@@ -1,0 +1,23 @@
+#jatekter{
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+}
+#balpanel{
+    width: 30%;
+    border: 1px solid orange;
+}
+#kartyabox{
+    border: 1px solid red;
+}
+#pontokbox{
+    border: 1px solid blue;
+}
+#tabla{
+    width: 60%;
+    border: 1px solid green;
+}
+#korokbox{
+    width: 10%;
+    border: 1px solid yellow;
+}
