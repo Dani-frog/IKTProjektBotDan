@@ -27,9 +27,26 @@ function JatekterElrendezes()
     tabla.id = "tabla";
     korokBox.id = "korokbox";
 }
+function TablaGeneralas()
+{
+    for(var i = 0; i < 5; i++)
+    {
+        var sorDiv = document.createElement("div");
+        sorDiv.classList += " sordiv";
+        for(var j = 0; j<6;j++)
+        {
+            var oszlopDiv = document.createElement("div");
+            oszlopDiv.classList += " oszlopdiv";
+            oszlopDiv.innerHTML = "X";
+            sorDiv.appendChild(oszlopDiv);
+        }
+        tabla.appendChild(sorDiv);
+    }
+}
 function Main()
 {
     JatekterBetoltes();
     JatekterElrendezes();
+    TablaGeneralas();
 }
 Main();
