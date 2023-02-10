@@ -27,24 +27,22 @@ function JatekterElrendezes()
     tabla.id = "tabla";
     korokBox.id = "korokbox";
 }
-
 function TablaGeneralas()
 {
-    for (var i = 0; i < 5; i++) 
+    for(var i = 0; i < 5; i++)
     {
-        var sordiv = document.createElement("div");
-        sordiv.classList += " sordiv";
-        for(var j = 0;j<6;j++)
+        var sorDiv = document.createElement("div");
+        sorDiv.classList += " sordiv";
+        for(var j = 0; j<6;j++)
         {
-            var oszlopdiv = document.createElement("div");
-            oszlopdiv.classList += " oszlopdiv";
-            oszlopdiv.innerHTML ="x"
-            sordiv.appendChild(oszlopdiv);
-        } 
-        tabla.appendChild(sordiv);
+            var oszlopDiv = document.createElement("div");
+            oszlopDiv.classList += " oszlopdiv";
+            oszlopDiv.innerHTML = "X";
+            sorDiv.appendChild(oszlopDiv);
+        }
+        tabla.appendChild(sorDiv);
     }
 }
-
 function Main()
 {
     JatekterBetoltes();
