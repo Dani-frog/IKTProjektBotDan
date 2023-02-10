@@ -16,7 +16,7 @@ function JatekterBetoltes()
 
     kartyaBox.innerHTML = "kartyaBox";
     pontokBox.innerHTML = "pontokBox";
-    tabla.innerHTML = "tabla";
+    //tabla.innerHTML = "tabla";
     korokBox.innerHTML = "korokBox";
 }
 function JatekterElrendezes()
@@ -27,9 +27,28 @@ function JatekterElrendezes()
     tabla.id = "tabla";
     korokBox.id = "korokbox";
 }
+
+function TablaGeneralas()
+{
+    for (var i = 0; i < 5; i++) 
+    {
+        var sordiv = document.createElement("div");
+        sordiv.classList += " sordiv";
+        for(var j = 0;j<6;j++)
+        {
+            var oszlopdiv = document.createElement("div");
+            oszlopdiv.classList += " oszlopdiv";
+            oszlopdiv.innerHTML ="x"
+            sordiv.appendChild(oszlopdiv);
+        } 
+        tabla.appendChild(sordiv);
+    }
+}
+
 function Main()
 {
     JatekterBetoltes();
     JatekterElrendezes();
+    TablaGeneralas();
 }
 Main();
