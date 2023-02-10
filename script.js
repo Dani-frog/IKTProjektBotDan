@@ -35,9 +35,12 @@ function TablaGeneralas()
         sorDiv.classList += " sordiv";
         for(var j = 0; j<6;j++)
         {
+            var kep = document.createElement("img");
             var oszlopDiv = document.createElement("div");
             oszlopDiv.classList += " oszlopdiv";
-            oszlopDiv.innerHTML = "X";
+            //kep.src="kepek/"+Math.floor(Math.random()*23+1+".jpg");
+            kep.src="kepek/1.jpg";
+            oszlopDiv.appendChild(kep);
             sorDiv.appendChild(oszlopDiv);
         }
         tabla.appendChild(sorDiv);
