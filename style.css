@@ -19,14 +19,14 @@
     height: 20vw;
 }
 #tabla{
-    width: 60%;
+    width: 50%;
     border: 1px solid green;
     height: 40vw;
     display: flex;
     flex-direction: column;
 }
 #korokbox{
-    width: 10%;
+    width: 20%;
     border: 1px solid yellow;
     height: 40vw;
 }
@@ -39,5 +39,8 @@
 .oszlopdiv{
     border: 1px solid red;
     width: 16.6%;
-    margin: 5px;
+    margin: 1vw;
+}
+#tabla img{
+    width: 100%;
 }

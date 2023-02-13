@@ -51,21 +51,45 @@ function TablaFeltoltes(db)
     // véletlenszerűen válassz ki egy képet és tedd az első cellába
     // véletlen helyre helyezd el a véletlen kiválasztott képet
     // paraméter segítségével megadott darabszámú képet helyezz el, véletlen helyre
+    var ht = new Array();
+
     for(var i = 0; i< db;i++)
     {
-        var rand1 = Math.floor(Math.random()*(30-1+1)+1);
-        var div = document.getElementById(rand1);
-        var img = document.createElement("img");
-        var rand2 = Math.floor(Math.random()*(23-1+1)+1);
-        img.src = "img/Lapok/"+rand2+".jpg";
-        div.appendChild(img);
+        var kep = document.createElement("img");
+        kep.src = "img/Lapok/"+ Math.floor(Math.random()*23+1)+".jpg";
+        var velcella = Math.floor(Math.random()*30+1);
+        while(ht.includes(velcella))
+        {
+            velcella = Math.floor(Math.random()*30+1);
+        }
+        var cella = document.getElementById(velcella);
+        ht.push(velcella);
+        cella.appendChild(kep);
     }
+    var tt = new Array("kek","piros","sarga","zold");
+    for(var i = 0;i< 7;i++)
+    {
+        var kep = document.createElement("img");
+        kep.src = "img/tornyok/"+tt[Math.floor(Math.random()*4+1)-1]+"/"+Math.floor(Math.random()*4+1)+".png";
+        var velcella = Math.floor(Math.random()*30+1);
+        while(ht.includes(velcella))
+        {
+            velcella = Math.floor(Math.random()*30+1);
+        }
+        var cella = document.getElementById(velcella);
+        ht.push(velcella);
+        cella.appendChild(kep);
+    }
+    // Generálja ki a 23 képet a 30 helyre véletlenszerűen,
+    // a maradékra pedig véletlen tornyokat tegyen.
+    
+
 }
 function Main()
 {
     JatekterBetoltes();
     JatekterElrendezes();
     TablaGeneralas();
-    TablaFeltoltes(5);
+    TablaFeltoltes(23);
 }
 Main();
