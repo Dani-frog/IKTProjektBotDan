@@ -89,7 +89,9 @@ function TablaFeltoltes(db)
     }
 
     var sorErtekek = SorErtek(laptomb);
+    var oszlopErtekek = OszlopErtek(laptomb);
     console.log(sorErtekek);
+    console.log(oszlopErtekek);
 
 }
 function SorErtek(laptomb)
@@ -103,6 +105,34 @@ function SorErtek(laptomb)
         for(var j = 0;j<6;j++)
         {
             let ertek = laptomb[i+j];
+            if(ertek[0]=="t"){
+                //console.log("TORONY\nérték:"+ertek[1])
+                ans+=parseInt(ertek[1]);
+            }
+            else{
+                //console.log("LAP\nérték:"+(lapertek[ertek-1]))
+                ans +=parseInt(lapertek[ertek-1]);
+            }
+            //console.log("ANS:"+ans)
+        }
+        set.push(ans);
+        //console.log("PUSH:"+ans)
+    }
+    return set;
+}
+
+function OszlopErtek(laptomb)
+{
+    var lapertek = [-3,2,5,4,3,0,-6,6,0,2,0,-5,4,0,5,6,-4,1,-1,-2,0,3,1];
+    var set = new Array();
+    var ans = 0;
+    for(var i = 0;i<30;i+=5)
+    {
+        
+        for(var j = 0;j<5;j++)
+        {
+            ans = 0;
+            let ertek = laptomb[j+i];
             if(ertek[0]=="t"){
                 //console.log("TORONY\nérték:"+ertek[1])
                 ans+=parseInt(ertek[1]);
