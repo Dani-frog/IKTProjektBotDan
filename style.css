@@ -4,11 +4,13 @@
     display: flex;
     flex-direction: row;
     height: 40vw;
+    background-color: brown;
 }
 #balpanel{
     width: 30%;
     border: 1px solid orange;
     height: 40vw;
+    background-color: darkslategrey;
 }
 #kartyabox{
     border: 1px solid red;
@@ -19,14 +21,14 @@
     height: 20vw;
 }
 #tabla{
-    width: 60%;
+    width: 50%;
     border: 1px solid green;
     height: 40vw;
     display: flex;
     flex-direction: column;
 }
 #korokbox{
-    width: 10%;
+    width: 20%;
     border: 1px solid yellow;
     height: 40vw;
 }
@@ -39,7 +41,7 @@
 .oszlopdiv{
     border: 1px solid red;
     width: 16.6%;
-    margin: 5px;
+    margin: 8vw;
 }
 
 .sordiv{
@@ -52,6 +54,10 @@
 .oszlopdiv{
     border: 1px solid black;
     width: 16.6%;
-    margin: 5px;
+    margin: 1vw;
+}
+
+#tabla img{
+    width: 100%;
 }
 
