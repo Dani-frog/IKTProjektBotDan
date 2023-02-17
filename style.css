@@ -1,10 +1,13 @@
+body{
+    background-color: black;
+}
 #jatekter{
     width: 100%;
-    border: 3px solid black;
+    border: 3px solid darkgoldenrod;
     display: flex;
     flex-direction: row;
     height: 40vw;
-    background-color: brown;
+    background-color: lightgoldenrodyellow;
 }
 #balpanel{
     width: 30%;
@@ -13,11 +16,11 @@
     background-color: darkslategrey;
 }
 #kartyabox{
-    border: 1px solid darkgoldenrod;
+    border: 0.1px solid darkgoldenrod;
     height: 20vw;
 }
 #pontokbox{
-    border: 1px solid darkgoldenrod;
+    border: 0.1px solid darkgoldenrod;
     height: 20vw;
 }
 #tabla{
