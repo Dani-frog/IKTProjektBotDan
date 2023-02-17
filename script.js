@@ -6,6 +6,70 @@ var pontokBox = document.createElement("div");
 var tabla = document.createElement("div");
 var korokBox = document.createElement("div");
 
+var Kartyak = [{id:1,value:-3,sign:''},
+{id:2,value:2,sign:''},
+{id:3,value:5,sign:''},
+{id:4,value:4,sign:''},
+{id:5,value:3,sign:''},
+{id:6,value:0,sign:'pap'},
+{id:7,value:-6,sign:''},
+{id:8,value:6,sign:''},
+{id:9,value:0,sign:'taliga'},
+{id:10,value:2,sign:''},
+{id:11,value:0,sign:'hegy'},
+{id:12,value:-5,sign:''},
+{id:13,value:4,sign:''},
+{id:14,value:0,sign:'sarkany'},
+{id:15,value:5,sign:''},
+{id:16,value:6,sign:''},
+{id:17,value:-4,sign:''},
+{id:18,value:1,sign:''},
+{id:19,value:-1,sign:''},
+{id:20,value:-2,sign:''},
+{id:21,value:1,sign:''},
+{id:22,value:3,sign:''},
+{id:23,value:0,sign:'hegy'},
+]
+
+
+var Tornyok = [
+{id:1,value:1,hp:1},
+{id:2,value:2,hp:2},
+{id:3,value:3,hp:3},
+{id:4,value:4,hp:4},
+{id:5,value:1,hp:1},
+{id:6,value:2,hp:2},
+{id:7,value:3,hp:3},
+{id:8,value:4,hp:4},
+{id:9,value:1,hp:1},
+{id:10,value:2,hp:2},
+{id:11,value:3,hp:3},
+{id:12,value:4,hp:4},
+{id:13,value:1,hp:1},
+{id:14,value:2,hp:2},
+{id:15,value:3,hp:3},
+{id:16,value:4,hp:4},
+]
+
+{
+{id:1;value:1;sign:hp:1};
+{id:2;value:2;hp:2};
+{id:3;value:3;hp:3};
+{id:4;value:4;hp:4};
+{id:5;value:1;hp:1};
+{id:6;value:2;hp:2};
+{id:7;value:3;hp:3};
+{id:8;value:4;hp:4};
+{id:9;value:1;hp:1};
+{id:10;value:2;hp:2};
+{id:11;value:3;hp:3};
+{id:12;value:4;hp:4};
+{id:13;value:1;hp:1};
+{id:14;value:2;hp:2};
+{id:15;value:3;hp:3};
+{id:16;value:4;hp:4};
+}
+
 function JatekterBetoltes()
 {
     balPanel.appendChild(kartyaBox);
@@ -13,11 +77,12 @@ function JatekterBetoltes()
     jatekTer.appendChild(balPanel);
     jatekTer.appendChild(tabla);
     jatekTer.appendChild(korokBox);
-
+/*
     kartyaBox.innerHTML = "kartyaBox";
     pontokBox.innerHTML = "pontokBox";
-    tabla.innerHTML = "tabla";
+    //tabla.innerHTML = "tabla";
     korokBox.innerHTML = "korokBox";
+    */
 }
 function JatekterElrendezes()
 {
@@ -36,6 +101,7 @@ function TablaGeneralas()
         sorDiv.classList += " sordiv";
         for(var j = 0; j<6;j++)
         {
+            var kep = document.createElement("img");
             var oszlopDiv = document.createElement("div");
             oszlopDiv.classList += " oszlopdiv";
             oszlopDiv.id = k;
@@ -53,22 +119,34 @@ function TablaFeltoltes(db)
     // paraméter segítségével megadott darabszámú képet helyezz el, véletlen helyre
     // Generálja ki a 23 képet a 30 helyre véletlenszerűen,
     // a maradékra pedig véletlen tornyokat tegyen.
+    // csak egy kártyát generáljon ki
+    
     var ht = new Array();
     var laptomb = new Array();
-
+    var kepid = new Array();
     for(var i = 0; i< db;i++)
     {
+        
         var kep = document.createElement("img");
         var lapszam = Math.floor(Math.random()*23+1);
-        kep.src = "img/Lapok/"+lapszam+".jpg";
         var velcella = Math.floor(Math.random()*30+1);
+
+        while(kepid.includes(lapszam))
+        {
+            lapszam = Math.floor(Math.random()*23+1);
+        }
+        kep.src = "img/Lapok/"+lapszam+".jpg";
+        kepid.push(lapszam);
+
         while(ht.includes(velcella))
         {
             velcella = Math.floor(Math.random()*30+1);
         }
+
         laptomb[velcella-1] = lapszam;
         var cella = document.getElementById(velcella);
         ht.push(velcella);
+        
         cella.appendChild(kep);
     }
     var tt = new Array("kek","piros","sarga","zold");
@@ -82,6 +160,7 @@ function TablaFeltoltes(db)
         {
             velcella = Math.floor(Math.random()*30+1);
         }
+        
         laptomb[velcella-1] = "t"+toronyszam;
         var cella = document.getElementById(velcella);
         ht.push(velcella);
@@ -92,7 +171,32 @@ function TablaFeltoltes(db)
     var oszlopErtekek = OszlopErtek(laptomb);
     console.log(sorErtekek);
     console.log(oszlopErtekek);
-
+}
+function OszlopErtek(laptomb)
+{
+    var lapertek = [-3,2,5,4,3,0,-6,6,0,2,0,-5,4,0,5,6,-4,1,-1,-2,0,3,1];
+    var set = new Array();
+    var ans = 0;
+    for(var i = 0;i<6;i++)
+    {
+        ans = 0;
+        for(var j = 0;j<30;j+=6)
+        {
+            let ertek = laptomb[i+j];
+            if(ertek[0]=="t"){
+                //console.log("TORONY\nérték:"+ertek[1])
+                ans+=parseInt(ertek[1]);
+            }
+            else{
+                //console.log("LAP\nérték:"+(lapertek[ertek-1]))
+                ans +=parseInt(lapertek[ertek-1]);
+            }
+            //console.log("ANS:"+ans)
+        }
+        set.push(ans);
+        //console.log("PUSH:"+ans)
+    }
+    return set;
 }
 function SorErtek(laptomb)
 {
