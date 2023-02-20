@@ -4,8 +4,15 @@ var kartyaBox = document.createElement("div");
 var pontokBox = document.createElement("div");
 var tabla = document.createElement("div");
 var korokBox = document.createElement("div");
+var cellak = [
+    /*{
+        id: 1,
+        type: "", //v - vár,k - kártya
+        {kártya/vár tartalma}
+    }*/
+];
 
-var Kartyak =[
+var KartyaData = [
 {id:1,value:-3,sign:''},
 {id:2,value:2,sign:''},
 {id:3,value:5,sign:''},
@@ -32,7 +39,7 @@ var Kartyak =[
 ]
 
 
-var Tornyok = [
+var VarData = [
 {id:1,color:"kek",value:1},
 {id:2,color:"kek",value:2},
 {id:3,color:"kek",value:3},
@@ -58,12 +65,6 @@ function JatekterBetoltes()
     jatekTer.appendChild(balPanel);
     jatekTer.appendChild(tabla);
     jatekTer.appendChild(korokBox);
-/*
-    kartyaBox.innerHTML = "kartyaBox";
-    pontokBox.innerHTML = "pontokBox";
-    //tabla.innerHTML = "tabla";
-    korokBox.innerHTML = "korokBox";
-    */
 }
 function JatekterElrendezes()
 {
@@ -86,133 +87,38 @@ function TablaGeneralas()
             var oszlopDiv = document.createElement("div");
             oszlopDiv.classList += " oszlopdiv";
             oszlopDiv.id = k;
+            cellak.push({id:k});
             k++;
             sorDiv.appendChild(oszlopDiv);
         }
         tabla.appendChild(sorDiv);
     }
+    console.log(cellak);
 }
-function TablaFeltoltes(db)
+function CellakFeltoltese()
 {
-    // tölts be egy képek az első cellába
-    // véletlenszerűen válassz ki egy képet és tedd az első cellába
-    // véletlen helyre helyezd el a véletlen kiválasztott képet
-    // paraméter segítségével megadott darabszámú képet helyezz el, véletlen helyre
-    // Generálja ki a 23 képet a 30 helyre véletlenszerűen,
-    // a maradékra pedig véletlen tornyokat tegyen.
-    // csak egy kártyát generáljon ki
-    
-    var ht = new Array();
-    var laptomb = new Array();
-    var kepid = new Array();
-    for(var i = 0; i< db;i++)
+    for(var i = 0; i<23;i++)
     {
-        
-        var kep = document.createElement("img");
-        var lapszam = Math.floor(Math.random()*23+1);
-        var velcella = Math.floor(Math.random()*30+1);
-
-        while(kepid.includes(lapszam))
-        {
-            lapszam = Math.floor(Math.random()*23+1);
-        }
-        kep.src = "img/Lapok/"+lapszam+".jpg";
-        kepid.push(lapszam);
-
-        while(ht.includes(velcella))
-        {
-            velcella = Math.floor(Math.random()*30+1);
-        }
-
-        laptomb[velcella-1] = lapszam;
-        var cella = document.getElementById(velcella);
-        ht.push(velcella);
-        
-        cella.appendChild(kep);
+        cellak[i].type = "k";
+        cellak[i].kartya = KartyaData[i];        
     }
-    var tt = new Array("kek","piros","sarga","zold");
-    for(var i = 0;i< 7;i++)
+    for(var i = 23;i<30;i++)
     {
-        var kep = document.createElement("img");
-        var toronyszam = Math.floor(Math.random()*4+1);
-        kep.src = "img/tornyok/"+tt[Math.floor(Math.random()*4+1)-1]+"/"+toronyszam+".png";
-        var velcella = Math.floor(Math.random()*30+1);
-        while(ht.includes(velcella))
-        {
-            velcella = Math.floor(Math.random()*30+1);
-        }
-        
-        laptomb[velcella-1] = "t"+toronyszam;
-        var cella = document.getElementById(velcella);
-        ht.push(velcella);
-        cella.appendChild(kep);
+        cellak[i].type = "v"
+        cellak[i].kartya = VarData[i-23];
     }
-
-    var sorErtekek = SorErtek(laptomb);
-    var oszlopErtekek = OszlopErtek(laptomb);
-    console.log(sorErtekek);
-    console.log(oszlopErtekek);
+    /*HF:
+    feltöltést átírni, hogy minden kártyából véletlen szerűen 1 kerüljön be a tömbbe
+    a tömb alapján jelenítsd meg a képeket*/
 }
 
-function OszlopErtek(laptomb)
-{
-    var lapertek = [-3,2,5,4,3,0,-6,6,0,2,0,-5,4,0,5,6,-4,1,-1,-2,0,3,1];
-    var set = new Array();
-    var ans = 0;
-    for(var i = 0;i<6;i++)
-    {
-        ans = 0;
-        for(var j = 0;j<30;j+=6)
-        {
-            
-            let ertek = laptomb[i+j];
-            if(ertek[0]=="t"){
-                //console.log("TORONY\nérték:"+ertek[1])
-                ans+=parseInt(ertek[1]);
-            }
-            else{
-                //console.log("LAP\nérték:"+(lapertek[ertek-1]))
-                ans +=parseInt(lapertek[ertek-1]);
-            }
-            //console.log("ANS:"+ans)
-        }
-        set.push(ans);
-        //console.log("PUSH:"+ans)
-    }
-    return set;
-}
-function SorErtek(laptomb)
-{
-    var lapertek = [-3,2,5,4,3,0,-6,6,0,2,0,-5,4,0,5,6,-4,1,-1,-2,0,3,1];
-    var set = new Array();
-    var ans = 0;
-    for(var i = 0;i<30;i+=6)
-    {
-        ans = 0;
-        for(var j = 0;j<6;j++)
-        {
-            let ertek = laptomb[i+j];
-            if(ertek[0]=="t"){
-                //console.log("TORONY\nérték:"+ertek[1])
-                ans+=parseInt(ertek[1]);
-            }
-            else{
-                //console.log("LAP\nérték:"+(lapertek[ertek-1]))
-                ans +=parseInt(lapertek[ertek-1]);
-            }
-            //console.log("ANS:"+ans)
-        }
-        set.push(ans);
-        //console.log("PUSH:"+ans)
-    }
-    return set;
-}
+
 function Main()
 {
     JatekterBetoltes();
     JatekterElrendezes();
     TablaGeneralas();
-    TablaFeltoltes(23);
+    CellakFeltoltese();
 }
 
 
