@@ -33,22 +33,22 @@ var Kartyak =[
 
 
 var Tornyok = [
-{id:1,value:1,hp:1},
-{id:2,value:1,hp:2},
-{id:3,value:1,hp:3},
-{id:4,value:1,hp:4},
-{id:5,value:2,hp:1},
-{id:6,value:2,hp:2},
-{id:7,value:2,hp:3},
-{id:8,value:2,hp:4},
-{id:9,value:3,hp:1},
-{id:10,value:3,hp:2},
-{id:11,value:3,hp:3},
-{id:12,value:3,hp:4},
-{id:13,value:4,hp:1},
-{id:14,value:4,hp:2},
-{id:15,value:4,hp:3},
-{id:16,value:4,hp:4},
+{id:1,color:"kek",value:1},
+{id:2,color:"kek",value:2},
+{id:3,color:"kek",value:3},
+{id:4,color:"kek",value:4},
+{id:5,color:"piros",value:1},
+{id:6,color:"piros",value:2},
+{id:7,color:"piros",value:3},
+{id:8,color:"piros",value:4},
+{id:9,color:"sarga",value:1},
+{id:10,color:"sarga",value:2},
+{id:11,color:"sarga",value:3},
+{id:12,color:"sarga",value:4},
+{id:13,color:"zold",value:1},
+{id:14,color:"zold",value:2},
+{id:15,color:"zold",value:3},
+{id:16,color:"zold",value:4},
 ]
 
 function JatekterBetoltes()
@@ -214,4 +214,7 @@ function Main()
     TablaGeneralas();
     TablaFeltoltes(23);
 }
+
+
+
 Main();
