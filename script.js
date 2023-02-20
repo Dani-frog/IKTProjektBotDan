@@ -50,7 +50,7 @@ var Tornyok = [
 {id:15,value:3,hp:3},
 {id:16,value:4,hp:4},
 ]
-
+/*
 {
 {id:1;value:1;sign:hp:1};
 {id:2;value:2;hp:2};
@@ -68,7 +68,7 @@ var Tornyok = [
 {id:14;value:2;hp:2};
 {id:15;value:3;hp:3};
 {id:16;value:4;hp:4};
-}
+}*/
 
 function JatekterBetoltes()
 {
@@ -220,4 +220,8 @@ function Main()
     TablaGeneralas();
     TablaFeltoltes(23);
 }
+
+var objektum = {id:1, nev:"Béla", szev:1467}
+console.log(objektum.nev)
+
 Main();
