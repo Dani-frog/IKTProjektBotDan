@@ -216,6 +216,7 @@ function Main()
 }
 
 var objektum = {id:1, nev:"Béla", szev:1467}
+objektum.nev = "Karcsi"
 console.log(objektum.nev)
 
 Main();
