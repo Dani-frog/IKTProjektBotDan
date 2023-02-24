@@ -58,13 +58,6 @@ var VarData = [
 {id:16,color:"zold",value:4},
 ]
 
-var cellak = [
-    {/*id:1,
-    type:"",//k,v
-    {/*kartya v vár tartalma*/ }
-
-]
-
 function JatekterBetoltes()
 {
     balPanel.appendChild(kartyaBox);
@@ -94,31 +87,75 @@ function TablaGeneralas()
             var oszlopDiv = document.createElement("div");
             oszlopDiv.classList += " oszlopdiv";
             oszlopDiv.id = k;
-            cellak.push({id:k});
             k++;
             sorDiv.appendChild(oszlopDiv);
         }
         tabla.appendChild(sorDiv);
     }
-    console.log(cellak);
+}
+function FoglalthelyE(x,l)
+{
+    for(var i = 0;i<l.lenght;i++)
+    {
+        if(l[i] != undefined)
+        {
+            if(l[i].id == x)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+function VoltEmarkep(x,l)
+{
+    for(var i = 0;i<l.lenght;i++)
+    {
+        if(l[i].kartya != undefined)
+        {
+            if(l[i].type == "vár" && l[i].kartya.id == x){
+                return true;
+            }
+        }
+    }
+    return false;
 }
 function CellakFeltoltese()
 {
     for(var i = 0; i<23;i++)
     {
-        cellak[i].type = "k";
-        cellak[i].kartya = KartyaData[i];        
+        var randhely = Math.floor(Math.random()*30+1);
+        while(FoglalthelyE(randhely,cellak)){
+            randhely = Math.floor(Math.random()*30+1);
+        }
+        var cella = {id: randhely};
+        cella.type = "kártya";
+        cella.kartya = KartyaData[i];  
+        cellak.push(cella);
     }
     for(var i = 23;i<30;i++)
     {
-        cellak[i].type = "v"
-        cellak[i].kartya = VarData[i-23];
+        randhely = Math.floor(Math.random()*30+1);
+        var randomvkep  = Math.floor(Math.random()*16+1);
+        while(FoglalthelyE(randhely,cellak)){
+            randhely = Math.floor(Math.random()*30+1);
+        }
+        while(VoltEmarkep(randomvkep,cellak)){
+            randomvkep = Math.floor(Math.random()*16+1);
+        }
+        var cella = {id: randhely};
+        cella.type = "vár"
+        cella.kartya = VarData[randomvkep];
+        cellak.push(cella);
     }
     /*HF:
     feltöltést átírni, hogy minden kártyából véletlen szerűen 1 kerüljön be a tömbbe
     a tömb alapján jelenítsd meg a képeket*/
 }
-
+function CellaInit()
+{
+    console.log(cellak);
+}
 
 function Main()
 {
@@ -126,10 +163,9 @@ function Main()
     JatekterElrendezes();
     TablaGeneralas();
     CellakFeltoltese();
+    CellaInit();
 }
 
-var objektum = {id:1, nev:"Béla", szev:1467}
-objektum.nev = "Karcsi"
-console.log(objektum.nev)
+
 
 Main();
