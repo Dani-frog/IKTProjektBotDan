@@ -224,6 +224,8 @@ function KepAtteves(div){
         RanyomE =false;
         RanyomE2 = true;
         bottomdiv.removeChild(document.getElementById(-1));
+        console.clear();
+        Kiszamolas();
     }
     if(ValuesArray.length == 30){
         Kiszamolas();
@@ -254,7 +256,7 @@ function Kiszamolas(){
                 }
             }
         }
-        console.log((i+1)+". oszlop: "+db); 
+        console.log((i)+". oszlop: "+db); 
     }
 }
 function RandomPakli()
@@ -297,5 +299,6 @@ function Main()
     TablaGeneralas();
     CellakRandomizalasa();
     RandomPakli();
+
 }
 Main();
