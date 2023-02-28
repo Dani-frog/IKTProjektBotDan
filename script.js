@@ -90,11 +90,11 @@ function TablaGeneralas()
         sorDiv.classList += " sordiv";
         for(var j = 0; j<6;j++)
         {
-            var kep = document.createElement("img");
+            
             var oszlopDiv = document.createElement("div");
             oszlopDiv.classList += " oszlopdiv";
             oszlopDiv.id = k;
-            cellak.push({id:k});
+            
             k++;
             sorDiv.appendChild(oszlopDiv);
         }
@@ -128,8 +128,10 @@ function Main()
     CellakFeltoltese();
 }
 
+/*
 var objektum = {id:1, nev:"Béla", szev:1467}
 objektum.nev = "Karcsi"
 console.log(objektum.nev)
+*/
 
 Main();
