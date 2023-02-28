@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: burlywood;
 }
 #jatekter{
     width: 100%;
@@ -34,7 +34,7 @@ body{
     width: 20%;
     border: 1px solid darkgoldenrod;
     height: 40vw;
-    background-color:darkkhaki;
+    background-color:darkslategrey;
 }
 .sordiv{
     /*border: 1px solid black;*/
@@ -91,7 +91,10 @@ body{
     margin-left: 10vw;
 }
 #Bottomdiv{
-    text-align: center;
+    width: 40%;
+    margin-left: 45vw;
+    margin-right: 45vw;
+    
 }
 #Bottomdiv img{
     width: 25%;
