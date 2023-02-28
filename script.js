@@ -275,6 +275,7 @@ function RandomPakli()
     Paklidiv.appendChild(cardbackimg);
     for(let i = 0; i<23;i++)
          {
+            Paklidiv.setAttribute("onclick","Megjelenites(this)")
             //  var oszlopDiv = document.createElement("div");
             //  oszlopDiv.classList += "MOszlopdiv";
             //  oszlopDiv.setAttribute("onclick","KepAttevo(this)");
@@ -282,6 +283,40 @@ function RandomPakli()
             //  oszlopDiv.id = k++;
          }
     kartyaBox.appendChild(Paklidiv);
+}
+
+function Megjelenites()
+{
+    
+    var kep = document.createElement("img");
+    
+    /*
+    for(let i = 0; i< 23;i++)
+    {
+        var random = Math.floor(Math.random()*30);
+        while(benneVanE(random+1,cellak)) {
+            random = Math.floor(Math.random()*30);
+        }
+        var cella = {id: random+1};
+        cella.type = "kártya";
+        cella.kartya = KartyaData[i];
+        cellak.splice(i,1,cella);
+        
+        
+    }
+    */
+
+    kep.src = "img/Lapok/1.jpg";
+    
+    console.log(kep)
+    document.body.appendChild(kep);
+    Megjelenites.setAttribute("onclick","Beteves(this)")
+    
+}
+
+function Beteves()
+{
+    
 }
 
 function Main()
