@@ -85,3 +85,8 @@ body{
 .Eltuntet img{
     visibility: hidden;
 }
+#Kartyaback{
+    width: 25%;
+    margin-top: 5vw;
+    margin-left: 10vw;
+}
