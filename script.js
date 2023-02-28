@@ -4,6 +4,7 @@ var kartyaBox = document.createElement("div");
 var pontokBox = document.createElement("div");
 var tabla = document.createElement("div");
 var korokBox = document.createElement("div");
+var bottomdiv = document.createElement("div");
 
 
 var KartyaData = [
@@ -92,6 +93,8 @@ function TablaGeneralas()
         }
         tabla.appendChild(sorDiv);
     }
+    bottomdiv.id = "Bottomdiv";
+    document.body.appendChild(bottomdiv);
 }
 
 function benneVanE(elem, lista){
@@ -111,17 +114,14 @@ function CellakRandomizalasa(){
     //Kártya tagek randomizálása
     for(let i = 0; i< 23;i++)
     {
-        var random = Math.floor(Math.random()*30);
-        while(benneVanE(random+1,cellak)) {
-            random = Math.floor(Math.random()*30);
-        }
-        var cella = {id: random+1};
+        var cella = {id: i+1};
         cella.type = "kártya";
         cella.kartya = KartyaData[i];
-        cellak.splice(i,1,cella);
+        cellak.push(cella);
     }
-    var rklista = [];
+    //var rklista = [];
     //Vár tagek randomizálása
+    /*
     for(let i = 0; i< 7;i++)
     {
         random = Math.floor(Math.random()*30);
@@ -138,23 +138,24 @@ function CellakRandomizalasa(){
         cella.kartya = VarData[rKep];
         cellak.splice(23+i,1,cella);
     }
+    */
     console.log(cellak);
-    KepKivalaszto();
+    //KepKivalaszto();
     //Táblába helyezés
-    for(let i = 0; i< 30;i++)
-    {
-        var hely2 = document.getElementById(cellak[i].id+30);
-        var kep = document.createElement("img");
-        if(cellak[i].type=="kártya")
-        {
-            kep.src = "img/Lapok/"+cellak[i].kartya.id+".jpg";
-        }
-        else
-        {
-            kep.src = "img/tornyok/"+cellak[i].kartya.color+"/"+cellak[i].kartya.value+".png";
-        }
-        hely2.appendChild(kep);
-    }
+    // for(let i = 0; i< 30;i++)
+    // {
+    //     var hely2 = document.getElementById(cellak[i].id+30);
+    //     var kep = document.createElement("img");
+    //     if(cellak[i].type=="kártya")
+    //     {
+    //         kep.src = "img/Lapok/"+cellak[i].kartya.id+".jpg";
+    //     }
+    //     else
+    //     {
+    //         kep.src = "img/tornyok/"+cellak[i].kartya.color+"/"+cellak[i].kartya.value+".png";
+    //     }
+    //     hely2.appendChild(kep);
+    // }
 }
 // function KepKivalaszto(){
 //     var Kivalaszto = document.createElement("div");
@@ -180,10 +181,10 @@ function CellakRandomizalasa(){
 var indexlista = new Array();
 var RanyomE = false;
 var KartyaIndex = 0;
-var RanyomE2 = false;
+var RanyomE2 = true;
 var KivalasztoDB = 0;
 //Alsó táblából való kép kiválasztás
-function KepAttevo(div){
+/*function KepAttevo(div){
     if(RanyomE == false){
         var HelyIndex = div.id;
         let i = 0;
@@ -204,35 +205,25 @@ function KepAttevo(div){
             }
         }
     }
-}
+}*/
 //Alap táblába való kép behelyezés
 var ValuesArray = new Array();
 function KepAtteves(div){
     if(RanyomE2 == false){
         var index = div.id;
         var kep = document.createElement("img");
-        let i = 0;
-        while(cellak[i].id != KartyaIndex){
-            i++
-        }
-        if(cellak[i].type == "kártya")
-        {
-            kep.src = "img/Lapok/"+cellak[i].kartya.id+".jpg";
-        }
-        else
-        {
-            kep.src = "img/tornyok/"+cellak[i].kartya.color+"/"+cellak[i].kartya.value+".png";
-        }
-        div.setAttribute("onclick","");
+        document.getElementById(index).removeAttribute("onclick");
         var ValueCella = {};
         ValueCella.id = index;
-        ValueCella.type = cellak[i].type;
-        ValueCella.value = cellak[i].kartya.value;
+        ValueCella.type = cellak[randomkep].type;
+        ValueCella.value = cellak[randomkep].kartya.value;
         ValuesArray.push(ValueCella);
         var hely = document.getElementById(index);
+        kep.src = "img/Lapok/"+cellak[randomkep].kartya.id+".jpg";
         hely.appendChild(kep);
-        RanyomE = false;
+        RanyomE =false;
         RanyomE2 = true;
+        bottomdiv.removeChild(document.getElementById(-1));
     }
     if(ValuesArray.length == 30){
         Kiszamolas();
@@ -273,58 +264,39 @@ function RandomPakli()
     cardbackimg.src = "img/cardback.png";
     cardbackimg.id = "Kartyaback";
     Paklidiv.appendChild(cardbackimg);
-    for(let i = 0; i<23;i++)
+    for(var i = 0; i<23;i++)
          {
-            Paklidiv.setAttribute("onclick","Megjelenites(this)")
-            //  var oszlopDiv = document.createElement("div");
-            //  oszlopDiv.classList += "MOszlopdiv";
-            //  oszlopDiv.setAttribute("onclick","KepAttevo(this)");
-            //  sorDiv.appendChild(oszlopDiv);
-            //  oszlopDiv.id = k++;
+            Paklidiv.setAttribute("onclick","Lentre()");
+            
          }
     kartyaBox.appendChild(Paklidiv);
 }
-
-function Megjelenites()
-{
-    
-    var kep = document.createElement("img");
-    
-    /*
-    for(let i = 0; i< 23;i++)
-    {
-        var random = Math.floor(Math.random()*30);
-        while(benneVanE(random+1,cellak)) {
-            random = Math.floor(Math.random()*30);
+var kartyalista = [];
+var randomkep;
+function Lentre(){
+    if(RanyomE == false){
+        RanyomE = true;
+        RanyomE2 = false;
+        var kartyakep = document.createElement("img");
+        var random = Math.floor(Math.random()*23);
+        while(kartyalista.includes(random)){
+            random = Math.floor(Math.random()*23);
         }
-        var cella = {id: random+1};
-        cella.type = "kártya";
-        cella.kartya = KartyaData[i];
-        cellak.splice(i,1,cella);
-        
-        
+        kartyalista.push(random);
+        kartyakep.src = "img/Lapok/"+cellak[random].kartya.id+".jpg";
+        kartyakep.id = -1;
+        randomkep = random;
+        bottomdiv.appendChild(kartyakep);
     }
-    */
-
-    kep.src = "img/Lapok/1.jpg";
-    
-    console.log(kep)
-    document.body.appendChild(kep);
-    Megjelenites.setAttribute("onclick","Beteves(this)")
-    
 }
 
-function Beteves()
-{
-    
-}
 
 function Main()
 {
     JatekterBetoltes();
     JatekterElrendezes();
     TablaGeneralas();
-    //CellakRandomizalasa();
+    CellakRandomizalasa();
     RandomPakli();
 }
 Main();
