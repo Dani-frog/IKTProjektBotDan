@@ -197,7 +197,7 @@ function Nincstele(){
         return true;
     }
     else{
-        for(let i = 1;i<Ertekek.length;i++){
+        for(let i = 0;i<Ertekek.length;i++){
             if(Ertekek[i] == undefined){
                 return true;
             }
