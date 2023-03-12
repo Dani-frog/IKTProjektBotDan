@@ -91,13 +91,40 @@ body{
     margin-left: 10vw;
 }
 #Bottomdiv{
-    width: 40%;
-    margin-left: 45vw;
-    margin-right: 45vw;
-    
-}
-#Bottomdiv img{
-    width: 25%;
+    width: 80%;
+    height: 7vw;
+    margin: 2%;
+    border: 2px solid black;
     background-color: white;
-    border: 5px solid darkgoldenrod;
+    border-radius: 5px;
+    float: left;
+    display: flex;
+    flex-direction: row;
+}
+#Bottomdiv div{
+    display: flex;
+    flex-direction: row;
+    height: 5vw;
+    width:  10%;
+    margin: 1%;
+    border-radius: 10%;
+    background-color: lightgray;
+    border: 2px solid black;
+}
+#Bottomdiv div img{
+    width: 100%;
+}
+#Felhuzodiv{
+    width: 10%;
+    height: 7vw;
+    margin: 2%;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 5px;
+    float: right;
+    display: flex;
+    flex-direction: row;
+}
+#Felhuzodiv img{
+    width: 100%;
 }
