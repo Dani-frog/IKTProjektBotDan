@@ -4,7 +4,6 @@ var kartyaBox = document.createElement("div");
 var pontokBox = document.createElement("div");
 var tabla = document.createElement("div");
 var korokBox = document.createElement("div");
-var bottomdiv = document.createElement("div");
 
 
 var KartyaData = [
@@ -63,10 +62,10 @@ function JatekterBetoltes()
     jatekTer.appendChild(tabla);
     jatekTer.appendChild(korokBox);
 
-    //kartyaBox.innerHTML = "kartyaBox";
+    kartyaBox.innerHTML = "kartyaBox";
     pontokBox.innerHTML = "pontokBox";
     //tabla.innerHTML = "tabla";
-    //korokBox.innerHTML = "korokBox";
+    korokBox.innerHTML = "korokBox";
 }
 function JatekterElrendezes()
 {
@@ -93,8 +92,6 @@ function TablaGeneralas()
         }
         tabla.appendChild(sorDiv);
     }
-    bottomdiv.id = "Bottomdiv";
-    document.body.appendChild(bottomdiv);
 }
 
 function benneVanE(elem, lista){
@@ -114,14 +111,17 @@ function CellakRandomizalasa(){
     //Kártya tagek randomizálása
     for(let i = 0; i< 23;i++)
     {
-        var cella = {id: i+1};
+        var random = Math.floor(Math.random()*30);
+        while(benneVanE(random+1,cellak)) {
+            random = Math.floor(Math.random()*30);
+        }
+        var cella = {id: random+1};
         cella.type = "kártya";
         cella.kartya = KartyaData[i];
-        cellak.push(cella);
+        cellak.splice(i,1,cella);
     }
-    //var rklista = [];
+    var rklista = [];
     //Vár tagek randomizálása
-    /*
     for(let i = 0; i< 7;i++)
     {
         random = Math.floor(Math.random()*30);
@@ -138,53 +138,52 @@ function CellakRandomizalasa(){
         cella.kartya = VarData[rKep];
         cellak.splice(23+i,1,cella);
     }
-    */
     console.log(cellak);
-    //KepKivalaszto();
+    KepKivalaszto();
     //Táblába helyezés
-    // for(let i = 0; i< 30;i++)
-    // {
-    //     var hely2 = document.getElementById(cellak[i].id+30);
-    //     var kep = document.createElement("img");
-    //     if(cellak[i].type=="kártya")
-    //     {
-    //         kep.src = "img/Lapok/"+cellak[i].kartya.id+".jpg";
-    //     }
-    //     else
-    //     {
-    //         kep.src = "img/tornyok/"+cellak[i].kartya.color+"/"+cellak[i].kartya.value+".png";
-    //     }
-    //     hely2.appendChild(kep);
-    // }
+    for(let i = 0; i< 30;i++)
+    {
+        var hely2 = document.getElementById(cellak[i].id+30);
+        var kep = document.createElement("img");
+        if(cellak[i].type=="kártya")
+        {
+            kep.src = "img/Lapok/"+cellak[i].kartya.id+".jpg";
+        }
+        else
+        {
+            kep.src = "img/tornyok/"+cellak[i].kartya.color+"/"+cellak[i].kartya.value+".png";
+        }
+        hely2.appendChild(kep);
+    }
 }
-// function KepKivalaszto(){
-//     var Kivalaszto = document.createElement("div");
-//     Kivalaszto.id = "Kivalaszto";
-//     document.body.appendChild(Kivalaszto);
-//     var k = 31;
-//     for(var i = 0; i < 2; i++)
-//     {
-//         var sorDiv = document.createElement("div");
-//         sorDiv.classList += "MSordiv";
-//         for(var j = 0; j<15;j++)
-//         {
-//             var oszlopDiv = document.createElement("div");
-//             oszlopDiv.classList += "MOszlopdiv";
-//             oszlopDiv.setAttribute("onclick","KepAttevo(this)");
-//             sorDiv.appendChild(oszlopDiv);
-//             oszlopDiv.id = k++;
-//         }
-//         Kivalaszto.appendChild(sorDiv);
-//     }
-// }
+function KepKivalaszto(){
+    var Kivalaszto = document.createElement("div");
+    Kivalaszto.id = "Kivalaszto";
+    document.body.appendChild(Kivalaszto);
+    var k = 31;
+    for(var i = 0; i < 2; i++)
+    {
+        var sorDiv = document.createElement("div");
+        sorDiv.classList += "MSordiv";
+        for(var j = 0; j<15;j++)
+        {
+            var oszlopDiv = document.createElement("div");
+            oszlopDiv.classList += "MOszlopdiv";
+            oszlopDiv.setAttribute("onclick","KepAttevo(this)");
+            sorDiv.appendChild(oszlopDiv);
+            oszlopDiv.id = k++;
+        }
+        Kivalaszto.appendChild(sorDiv);
+    }
+}
 //Globál változók
 var indexlista = new Array();
 var RanyomE = false;
 var KartyaIndex = 0;
-var RanyomE2 = true;
+var RanyomE2 = false;
 var KivalasztoDB = 0;
 //Alsó táblából való kép kiválasztás
-/*function KepAttevo(div){
+function KepAttevo(div){
     if(RanyomE == false){
         var HelyIndex = div.id;
         let i = 0;
@@ -205,31 +204,36 @@ var KivalasztoDB = 0;
             }
         }
     }
-}*/
+}
 //Alap táblába való kép behelyezés
 var ValuesArray = new Array();
 function KepAtteves(div){
     if(RanyomE2 == false){
         var index = div.id;
         var kep = document.createElement("img");
-        document.getElementById(index).removeAttribute("onclick");
+        let i = 0;
+        while(cellak[i].id != KartyaIndex){
+            i++
+        }
+        if(cellak[i].type == "kártya")
+        {
+            kep.src = "img/Lapok/"+cellak[i].kartya.id+".jpg";
+        }
+        else
+        {
+            kep.src = "img/tornyok/"+cellak[i].kartya.color+"/"+cellak[i].kartya.value+".png";
+        }
+        div.setAttribute("onclick","");
         var ValueCella = {};
         ValueCella.id = index;
-        ValueCella.type = cellak[randomkep].type;
-        ValueCella.value = cellak[randomkep].kartya.value;
+        ValueCella.type = cellak[i].type;
+        ValueCella.value = cellak[i].kartya.value;
         ValuesArray.push(ValueCella);
         var hely = document.getElementById(index);
-        kep.src = "img/Lapok/"+cellak[randomkep].kartya.id+".jpg";
         hely.appendChild(kep);
-        RanyomE =false;
+        RanyomE = false;
         RanyomE2 = true;
-        bottomdiv.removeChild(document.getElementById(-1));
-        console.clear();
-        Kiszamolas();
-        document.getElementById(hanyadikkor+"korkep").style.backgroundColor="green";
-        
     }
-    
     if(ValuesArray.length == 30){
         Kiszamolas();
         console.log(ValuesArray);
@@ -259,68 +263,9 @@ function Kiszamolas(){
                 }
             }
         }
-        console.log((i)+". oszlop: "+db); 
+        console.log((i+1)+". oszlop: "+db); 
     }
 }
-function RandomPakli()
-{
-    var Paklidiv = document.createElement("div");
-    var cardbackimg = document.createElement("img");
-    cardbackimg.src = "img/cardback.png";
-    cardbackimg.id = "Kartyaback";
-    Paklidiv.appendChild(cardbackimg);
-    for(var i = 0; i<23;i++)
-         {
-            Paklidiv.setAttribute("onclick","Lentre()");
-         }
-    kartyaBox.appendChild(Paklidiv);
-}
-var kartyalista = [];
-var randomkep;
-function Lentre(){
-    if(RanyomE == false){
-        RanyomE = true;
-        RanyomE2 = false;
-        var kartyakep = document.createElement("img");
-        var random = Math.floor(Math.random()*23);
-        while(kartyalista.includes(random)){
-            random = Math.floor(Math.random()*23);
-        }
-        kartyalista.push(random);
-        kartyakep.src = "img/Lapok/"+cellak[random].kartya.id+".jpg";
-        kartyakep.id = -1;
-        randomkep = random;
-        bottomdiv.appendChild(kartyakep);
-    }
-}
-
-var hanyadikkor=1;
-
-function Korok(){
-    var korkep1 = document.createElement("img");
-    var korkep2 = document.createElement("img");
-    var korkep3 = document.createElement("img");
-    korkep1.src = "img/"+1+".png";
-    korkep2.src = "img/"+2+".png";
-    korkep3.src = "img/"+3+".png";
-    korokBox.appendChild(korkep1);
-    korkep1.id="1korkep";
-    korkep2.id="2korkep";
-    korkep3.id="3korkep";
-    korokBox.appendChild(korkep2);
-    korokBox.appendChild(korkep3);
-
-   
-    
-    
-
-    
-    
-           
-}
-
-
-
 
 function Main()
 {
@@ -328,7 +273,6 @@ function Main()
     JatekterElrendezes();
     TablaGeneralas();
     CellakRandomizalasa();
-    RandomPakli();
-    Korok();
+    
 }
 Main();

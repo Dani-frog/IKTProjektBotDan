@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: burlywood;
 }
 #jatekter{
     width: 100%;
@@ -7,7 +7,7 @@ body{
     display: flex;
     flex-direction: row;
     height: 40vw;
-    background-color: lightgoldenrodyellow;
+    background: url(img/assane\ calling\ your\ mom.jpg) no-repeat center;
 }
 #balpanel{
     width: 30%;
@@ -34,7 +34,7 @@ body{
     width: 20%;
     border: 1px solid darkgoldenrod;
     height: 40vw;
-    background-color:darkkhaki;
+    background-color:darkslategrey;
 }
 .sordiv{
     /*border: 1px solid black;*/
@@ -43,10 +43,70 @@ body{
     height: 8vw;
 }
 .oszlopdiv{
-    border: 2px solid darkgoldenrod;
+    border: 3px solid darkgoldenrod;
     width: 16.6%;
     margin: 1vw;
 }
 #tabla img{
+    width:  6vw;
+    height: 6vw;
+    object-fit: cover;
+    border: 5px solid darkgoldenrod;
+}
+#kijelolve{
+    border: 2px solid rgb(251, 255, 0);
+}
+#Kivalaszto{
+    /*border: 1px solid white;*/
+    margin-top: 5px;
+    height: auto;
+    background-color: rgb(119, 50, 3);
+}
+.MSordiv{
+    display: flex;
+    flex-direction: row;
+    height: auto;
     width: 100%;
 }
+.MOszlopdiv{
+    background-color: rgb(143, 61, 7);
+    /*border: 1px solid red;*/
+    width: 100%;
+    height: 6vw;
+    margin: 2px;
+}
+#Kivalaszto img{
+    height: 6vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+.Eltuntet{
+    visibility: hidden;
+}
+.Eltuntet img{
+    visibility: hidden;
+}
+#Kartyaback{
+    width: 25%;
+    margin-top: 5vw;
+    margin-left: 10vw;
+}
+#Bottomdiv{
+    width: 40%;
+    margin-left: 45vw;
+    margin-right: 45vw;
+    
+}
+#Bottomdiv img{
+    width: 25%;
+    background-color: white;
+    border: 5px solid darkgoldenrod;
+}
+ #korokbox img{
+    width: 10vw;
+    height: 10vw;
+    margin: 7%;
+    
+ }
