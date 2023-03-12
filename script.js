@@ -193,16 +193,23 @@ function Kiszamolas(){
     }
 }
 function Nincstele(){
+    var db = 0;
     if(Ertekek.length == 0){
         return true;
     }
     else{
-        for(let i = 0;i<Ertekek.length;i++){
+        for(let i = 1;i<Ertekek.length;i++){
+            db++;
             if(Ertekek[i] == undefined){
                 return true;
             }
         }
-        return false;
+        if(db==Ertekek.length-1 && Ertekek.length != 31){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 
