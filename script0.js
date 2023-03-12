@@ -89,7 +89,7 @@ function TablaGeneralas()
         sorDiv.classList += " sordiv";
         for(var j = 0; j<6;j++)
         {
-            var kep = document.createElement("img");
+            
             var oszlopDiv = document.createElement("div");
             oszlopDiv.classList += " oszlopdiv";
             oszlopDiv.id = k;

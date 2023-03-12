@@ -83,7 +83,7 @@ function TablaGeneralas()
         sorDiv.classList += " sordiv";
         for(var j = 0; j<6;j++)
         {
-            var kep = document.createElement("img");
+            
             var oszlopDiv = document.createElement("div");
             oszlopDiv.classList += " oszlopdiv";
             oszlopDiv.id = k;
@@ -99,11 +99,21 @@ function CellakFeltoltese()
 {
     for(var i = 0; i<23;i++)
     {
+        var lapszam = Math.floor(Math.random()*23+1);
+        var velcella = Math.floor(Math.random()*30+1);
+        var kep = document.createElement("img");
         cellak[i].type = "k";
-        cellak[i].kartya = KartyaData[i];        
+        cellak[i].kartya = KartyaData[i];
+        
+        kep.src = "img/Lapok/"+lapszam+".jpg"; 
+        var cella = document.getElementById(velcella);
+        cella.appendChild(kep);   
+        cella.appendChild(KartyaData[velcella] );
     }
+    
     for(var i = 23;i<30;i++)
     {
+        var kep = document.createElement("img");
         cellak[i].type = "v"
         cellak[i].kartya = VarData[i-23];
     }
@@ -112,12 +122,20 @@ function CellakFeltoltese()
     a tömb alapján jelenítsd meg a képeket*/
 }
 
+function Cellalefoglalva(x) {
+    for (let i = 0; i < cellak.length; i++) {
+        if(cellak[i].id==x){
+        return true;
+        }
+    }
+}
 
 function Main()
 {
     JatekterBetoltes();
     JatekterElrendezes();
     TablaGeneralas();
+    
     CellakFeltoltese();
 }
 
