@@ -308,66 +308,6 @@ function kezdKartyaAttaves(div){
     }
 }
 
-function VarFeltoles()
-{
-    var k = 31;
-    for(var i = 0;i<4;i++){
-        let egyes = document.createElement("div");
-        let img = document.createElement("img");
-        img.src = "img/tornyok/kek/1.png";
-        egyes.appendChild(img);
-        egyes.setAttribute("onclick","varAtteves(this)");
-        egyes.id=k++;
-        bottomdiv.appendChild(egyes);
-    }
-    for(var i = 0; i<3;i++){
-        let kettes = document.createElement("div");
-        let img = document.createElement("img");
-        img.src = "img/tornyok/kek/2.png";
-        kettes.appendChild(img);
-        kettes.setAttribute("onclick","varAtteves(this)");
-        kettes.id=k++;
-        bottomdiv.appendChild(kettes);
-    }
-    for(var i = 0; i<2;i++){
-        let harmas = document.createElement("div");
-        let img = document.createElement("img");
-        img.src = "img/tornyok/kek/3.png";
-        harmas.appendChild(img);
-        harmas.setAttribute("onclick","varAtteves(this)");
-        harmas.id=k++;
-        bottomdiv.appendChild(harmas);
-    }
-    let negyes = document.createElement("div");
-    let img = document.createElement("img");
-    img.src = "img/tornyok/kek/4.png";
-    negyes.appendChild(img);
-    negyes.setAttribute("onclick","varAtteves(this)");
-    negyes.id=k++;
-    bottomdiv.appendChild(negyes);
-}
-function varAtteves(div){
-    div.classList.add("Eltuntet");
-    if(RanyomE == false){
-        RanyomE = true;
-        RanyomE2 = false;
-        var index = div.id;
-        bottomdiv.removeChild(document.getElementById(index));
-        var kep = document.createElement("img");
-        document.getElementById(index-30).removeAttribute("onclick");
-        var ValueCella = {};
-        ValueCella.id = index;
-        ValueCella.type = "vár";
-        ValueCella.kartya =  VarData[index-31];
-        ValuesArray.push(ValueCella);
-        var hely = document.getElementById(index);
-        kep.src = "img/tornyok/kek/"+VarData[index-30].value+".png";
-        hely.appendChild(kep);
-        RanyomE =false;
-        RanyomE2 = true;
-        bottomdiv.removeChild(document.getElementById(index));
-    }
-}
 
 function Main()
 {
