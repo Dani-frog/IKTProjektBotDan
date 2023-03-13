@@ -84,16 +84,15 @@ body{
     margin-right: auto;
     width: 100%;
 }
-.Eltuntet{
-    visibility: hidden;
-}
 .Eltuntet img{
     visibility: hidden;
 }
 #Kartyaback{
+    margin: 16.6%;
+    margin-left: 36%;
     width: 25%;
-    margin-top: 5vw;
-    margin-left: 10vw;
+    
+    
 }
 #Bottomdiv{
     width: 80%;

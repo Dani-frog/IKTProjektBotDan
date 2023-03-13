@@ -293,6 +293,7 @@ function VarGeneralas(){;
 
 function varAtteves(div,x){
     if(kivalaszt == false && Nincstele()){
+        div.removeAttribute("onclick");
         div.classList.add("Eltuntet");
         kivalaszt = true;
         kivalasztMast = false;
@@ -301,6 +302,7 @@ function varAtteves(div,x){
 }
 function kezdKartyaAttaves(div){
     if(kivalaszt == false && Nincstele()){
+        div.removeAttribute("onclick");
         div.classList.add("Eltuntet");
         kivalaszt = true;
         kivalasztMast = false;
@@ -315,7 +317,6 @@ function Main()
     JatekterElrendezes();
     TablaGeneralas();
     CellakRandomizalasa();
-    VarFeltoles();
     RandomPakli();
     KezdoKezGen();
 }
