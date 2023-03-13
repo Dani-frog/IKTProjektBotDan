@@ -95,28 +95,40 @@ body{
     margin-left: 10vw;
 }
 #Bottomdiv{
-    height: 15%;
-    width: 50%;
-    margin: 2%;
+    width: 80%;
+    height: 7vw;
+    margin: 1%;
     border: 2px solid black;
     background-color: white;
     border-radius: 5px;
     float: left;
-    
+    display: flex;
+    flex-direction: row;
 }
-#Bottomdiv img{
-    width: 10%;
-    margin: 2%;
+#Bottomdiv div{
+    display: flex;
+    flex-direction: row;
+    height: 5vw;
+    width:  10%;
+    margin: 1%;
     border-radius: 10%;
     background-color: lightgray;
     border: 2px solid black;
 }
-#Huzottlapdiv{
-    height: 15vw;
-    width: 30%;
-    margin: 2%;
+#Bottomdiv div img{
+    width: 100%;
+}
+#Felhuzodiv{
+    width: 10%;
+    height: 7vw;
+    margin: 1%;
     border: 2px solid black;
     background-color: white;
     border-radius: 5px;
     float: right;
+    display: flex;
+    flex-direction: row;
+}
+#Felhuzodiv img{
+    width: 100%;
 }
