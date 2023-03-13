@@ -43,9 +43,13 @@ body{
     height: 8vw;
 }
 .oszlopdiv{
-    border: 2px solid darkgoldenrod;
+    border: 3px solid black;
+    border-radius: 5px;
     width: 16.6%;
     margin: 1vw;
+}
+.oszlopdiv img{
+    border-radius: 5px;
 }
 #tabla img{
     width: 100%;
@@ -91,13 +95,28 @@ body{
     margin-left: 10vw;
 }
 #Bottomdiv{
-    width: 40%;
-    margin-left: 45vw;
-    margin-right: 45vw;
+    height: 15%;
+    width: 50%;
+    margin: 2%;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 5px;
+    float: left;
     
 }
 #Bottomdiv img{
-    width: 25%;
+    width: 10%;
+    margin: 2%;
+    border-radius: 10%;
+    background-color: lightgray;
+    border: 2px solid black;
+}
+#Huzottlapdiv{
+    height: 15vw;
+    width: 30%;
+    margin: 2%;
+    border: 2px solid black;
     background-color: white;
-    border: 5px solid darkgoldenrod;
+    border-radius: 5px;
+    float: right;
 }
