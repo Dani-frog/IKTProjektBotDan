@@ -116,6 +116,10 @@ var kivVarId = null;
 var huzottkartya = false;
 var Ertekek = [];
 var kezdoKartyaId;
+var Ertekek = [];
+var  ptszam= 50;
+var ermek =[];
+var hanyadikkor = 1;
 
 function KepAtteves(div){
     if(kivalasztMast == false){
@@ -294,6 +298,7 @@ function VarGeneralas(){;
 
 function varAtteves(div,x){
     if(kivalaszt == false && Nincstele()){
+        div.removeAttribute("onclick");
         div.classList.add("Eltuntet");
         kivalaszt = true;
         kivalasztMast = false;
@@ -302,6 +307,7 @@ function varAtteves(div,x){
 }
 function kezdKartyaAttaves(div){
     if(kivalaszt == false && Nincstele()){
+        div.removeAttribute("onclick");
         div.classList.add("Eltuntet");
         kivalaszt = true;
         kivalasztMast = false;
@@ -309,27 +315,64 @@ function kezdKartyaAttaves(div){
     }
 }
 
-var hanyadikkor=1;
+function Ermekfunct() {
+    //az érme játék elején 50, és a kör végi pontok alapján nő vagy csökken, még az nincs meg mikor van kör vége ezé csak berakom az érméket.
+    var ermejelen= 69;
+    var divkepeknek = document.createElement("div");
+    divkepeknek.id="ermekdiv";
+    pontokBox.appendChild(divkepeknek);
+    
+    var erme1 = document.createElement("img");erme1.src = "img/Érmék/1tr.png"; var darab1=0;
+    var erme5 = document.createElement("img");erme5.src = "img/Érmék/5tr.png";var darab5=0;
+    var erme10 = document.createElement("img");erme10.src = "img/Érmék/10tr.png";var darab10=0;
+    var erme50 = document.createElement("img");erme50.src = "img/Érmék/50tr.png";var darab50=0;
+    var erme100 = document.createElement("img");erme100.src = "img/Érmék/100tr.png";var darab100=0;
+    /*
+    divkepeknek.appendChild(erme1);
+    divkepeknek.appendChild(erme5);
+    divkepeknek.appendChild(erme10);
+    divkepeknek.appendChild(erme50);
+    */
+    while (ermejelen>0) {
+        while(ermejelen>=100)
+        {
+            darab100++;
+            ermejelen-=100;
+        }
+        document.getElementById("ermekdiv").innerHTML+=darab100;
+            divkepeknek.appendChild(erme100);
 
+        while(ermejelen>=50){
+            darab50++;
+            ermejelen-=50;
+        }
+        document.getElementById("ermekdiv").innerHTML+=darab50;
+        divkepeknek.appendChild(erme50);
 
-function Korok(){
-    var korkep1 = document.createElement("img");
-    var korkep2 = document.createElement("img");
-    var korkep3 = document.createElement("img");
-    korkep1.src = "img/"+1+".png";
-    korkep2.src = "img/"+2+".png";
-    korkep3.src = "img/"+3+".png";
-    korokBox.appendChild(korkep1);
-    korkep1.id="1korkep";
-    korkep2.id="2korkep";
-    korkep3.id="3korkep";
-    korokBox.appendChild(korkep2);
-    korokBox.appendChild(korkep3); 
-    document.getElementById(hanyadikkor+"korkep").style.backgroundColor= "green";      
+        while(ermejelen>=10){
+            darab10++;
+            ermejelen-=10;
+        }
+        document.getElementById("ermekdiv").innerHTML+=darab10;
+        divkepeknek.appendChild(erme10);
+
+        while(ermejelen>=5){
+            darab5++;
+            ermejelen-=5;
+        }
+        document.getElementById("ermekdiv").innerHTML+=darab5;
+        divkepeknek.appendChild(erme5);
+        while(ermejelen>=1){
+            darab1++;
+            ermejelen-=1;
+        }
+        document.getElementById("ermekdiv").innerHTML+=darab1;
+        divkepeknek.appendChild(erme1);
+
+    }
+    pontokBox.appendChild(divkepeknek);
+    
 }
-
-
-
 
 function Main()
 {
@@ -339,6 +382,6 @@ function Main()
     CellakRandomizalasa();
     RandomPakli();
     KezdoKezGen();
-    Korok();
+    Ermekfunct();
 }
 Main();
