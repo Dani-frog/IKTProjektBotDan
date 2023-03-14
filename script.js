@@ -138,6 +138,8 @@ function KepAtteves(div){
                 huzottkartya = false;
             }
             kivKartyaId = null;
+            console.clear();
+            Kiszamolas();
         }
         else if(kivVarId != null){
             var index = div.id;
@@ -154,6 +156,8 @@ function KepAtteves(div){
             kivalaszt = false;
             kivalasztMast = true;
             kivVarId = null;
+            console.clear();
+            Kiszamolas();
         }
     }
 }
@@ -163,9 +167,11 @@ function Kiszamolas(){
     for(var i = 0; i < 30;i+=6){
         var db = 0;
         for(var j = 1; j < 7;j++){
-            for(var k = 0; k < ValuesArray.length;k++){
-                if(ValuesArray[k].id == (i+j) && ValuesArray[k].type == "kártya"){
-                    db += ValuesArray[k].value;
+            for(var k = 0; k < Ertekek.length;k++){
+                if(Ertekek[k]!=undefined){
+                    if(Ertekek[k].id == (i+j) && Ertekek[k].type == "kártya"){
+                        db += Ertekek[k].kartya.value;
+                    }
                 }
             }
         }
@@ -175,9 +181,11 @@ function Kiszamolas(){
     for(var i = 1; i < 7;i++){
         var db = 0;
         for(var j = 0; j < 30;j+=6){
-            for(var k = 0; k < ValuesArray.length;k++){
-                if(ValuesArray[k].id == (i+j) && ValuesArray[k].type == "kártya"){
-                    db += ValuesArray[k].value;
+            for(var k = 0; k < Ertekek.length;k++){
+                if(Ertekek[k]!=undefined){
+                    if(Ertekek[k].id == (i+j) && Ertekek[k].type == "kártya"){
+                        db += Ertekek[k].kartya.value;
+                    }
                 }
             }
         }
@@ -185,16 +193,23 @@ function Kiszamolas(){
     }
 }
 function Nincstele(){
+    var db = 0;
     if(Ertekek.length == 0){
         return true;
     }
     else{
-        for(let i = 0;i<Ertekek.length-1;i++){
+        for(let i = 1;i<Ertekek.length;i++){
+            db++;
             if(Ertekek[i] == undefined){
                 return true;
             }
         }
-        return false;
+        if(db==Ertekek.length-1 && Ertekek.length != 31){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 
