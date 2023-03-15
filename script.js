@@ -220,12 +220,16 @@ function Osszegzes(){
     for(var i = 0; i < 30;i+=6){
         var sorOsszegek = [];
         var sorVarOsszegek = [];
-        var jelzes = "";
+        var Sarkany = false;
+        var Taliga  = false;
         for(var j = 1; j < 7;j++){
             if(ertekek[(i+j)].type=="kártya"){
                 sorOsszegek.push(ertekek[(i+j)].kartya.value);
-                if(ertekek[(i+j)].kartya.sign!=""){
-                    jelzes = ertekek[(i+j)].kartya.sign;
+                if(ertekek[(i+j)].kartya.sign=="sarkany"){
+                    Sarkany = true;
+                }
+                else if(ertekek[(i+j)].kartya.sign=="taliga"){
+                    Taliga = true;
                 }
             }
             else{
@@ -237,19 +241,17 @@ function Osszegzes(){
                 }
             }
         }
-        if(jelzes!="" || jelzes!="hegy"){
-            if(jelzes=="sarkany"){
-                for(var k = 0;k<sorOsszegek.length;k++){
-                    if(sorOsszegek[k]>0){
-                        sorOsszegek[k]=0;
-                    }
+        if(Sarkany){
+            for(var k = 0;k<sorOsszegek.length;k++){
+                if(sorOsszegek[k]>0){
+                    sorOsszegek[k]=0;
                 }
             }
-            else if(jelzes=="taliga"){
-                for(var k = 0;k<sorOsszegek.length;k++){
-                    sorOsszegek[k] *= 2;
-                }
-            }
+        }
+        else if(Taliga){
+            for(var k = 0;k<sorOsszegek.length;k++){
+                sorOsszegek[k] *= 2;
+        }
         }
         Sorok.push(Sum(sorOsszegek)*Sum(sorVarOsszegek));
     }
@@ -262,12 +264,16 @@ function Osszegzes(){
     for(var i = 1; i < 7;i++){
         var oszlopOsszegek = [];
         var oszlopVarOsszegek = [];
-        var jelzes = "";
+        var Sarkany = false;
+        var Taliga  = false;
         for(var j = 0; j < 30;j+=6){
             if(ertekek[(i+j)].type=="kártya"){
                 oszlopOsszegek.push(ertekek[(i+j)].kartya.value);
-                if(ertekek[(i+j)].kartya.sign!=""){
-                    jelzes = ertekek[(i+j)].kartya.sign;
+                if(ertekek[(i+j)].kartya.sign=="sarkany"){
+                    Sarkany = true;
+                }
+                else if(ertekek[(i+j)].kartya.sign=="taliga"){
+                    Taliga = true;
                 }
             }
             else{
@@ -278,18 +284,16 @@ function Osszegzes(){
                     oszlopVarOsszegek.push(ertekek[(i+j)].kartya.value);
                 }
             }
-            if(jelzes!="" || jelzes!="hegy"){
-                if(jelzes=="sarkany"){
-                    for(var k = 0;k<oszlopOsszegek.length;k++){
-                        if(oszlopOsszegek[k]>0){
-                            oszlopOsszegek[k]=0;
-                        }
+            if(Sarkany){
+                for(var k = 0;k<sorOsszegek.length;k++){
+                    if(sorOsszegek[k]>0){
+                        sorOsszegek[k]=0;
                     }
                 }
-                else if(jelzes=="taliga"){
-                    for(var k = 0;k<oszlopOsszegek.length;k++){
-                        oszlopOsszegek[k] *= 2;
-                    }
+            }
+            else if(Taliga){
+                for(var k = 0;k<sorOsszegek.length;k++){
+                    sorOsszegek[k] *= 2;
                 }
             }
         }
@@ -299,6 +303,7 @@ function Osszegzes(){
 
     pontSzam += Sum(Sorok)+Sum(Oszlopok);
 }
+
 
 function Sum(t){
     let ans = 0; 
