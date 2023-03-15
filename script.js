@@ -123,8 +123,20 @@ function TablaGeneralas()
 }
 
 //Jelenlegi kör megjelenítése
-function KorokHelyzete(){
-    korokBox.innerText = round;
+function KorokHelyzete(){ 
+    for (let i = 1; i < 4; i++) {
+        
+        var divek=document.createElement("div");
+        divek.id="div"+i+"kor"
+        divek.innerText=i+".Kör!"
+        if (i==round) {
+            divek.style.fontWeight="bold";
+            divek.style.border= "3px solid #333333";
+            divek.style.backgroundColor="#D3D3D3"
+        }
+        korokBox.appendChild(divek);
+        
+    }
 }
 
 //Cellak tömb feltöltése
@@ -258,25 +270,25 @@ function RandomPakli()
 }
 
 function randomKartya(img){
-        if(kivalaszt == false && Nincstele()){
-            kivalaszt = true;
-            kivalasztMast = false;
-            var kartyakep = document.createElement("img");
-            var random = Math.floor(Math.random()*23);
-            while(kartyalista.includes(random)){
-                random = Math.floor(Math.random()*23);
-            }
-            kartyalista.push(random);
-            kartyakep.src = "img/Lapok/"+cellak[random].kartya.id+".jpg";
-            kartyakep.id = -1;
-            kivKartyaId = random;
-            huzottkartya = true;
-            if(kartyalista.length==23){
-                img.removeAttribute("onclick");
-                img.src = "img/kifogyottCardback.png";
-            }
-            felhuzodiv.appendChild(kartyakep);
+    if(kivalaszt == false && Nincstele()){
+        kivalaszt = true;
+        kivalasztMast = false;
+        var kartyakep = document.createElement("img");
+        var random = Math.floor(Math.random()*23);
+        while(kartyalista.includes(random)){
+            random = Math.floor(Math.random()*23);
         }
+        kartyalista.push(random);
+        kartyakep.src = "img/Lapok/"+cellak[random].kartya.id+".jpg";
+        kartyakep.id = -1;
+        kivKartyaId = random;
+        huzottkartya = true;
+        if(kartyalista.length==23){
+            img.removeAttribute("onclick");
+            img.src = "img/kifogyottCardback.png";
+        }
+        felhuzodiv.appendChild(kartyakep);
+    }
 }
 
 function KezdoKezGen(){
@@ -410,6 +422,7 @@ function UjKor(){
         bottomdiv.innerHTML = "";
         felhuzodiv.innerHTML = "";
         pontokBox.innerHTML = "";
+        korokBox.innerHTML = "";
         Main();
     }
 }
@@ -440,3 +453,4 @@ function Main()
     Ermekfunct();
 }
 Main();
+
