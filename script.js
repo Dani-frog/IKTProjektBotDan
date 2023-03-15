@@ -55,8 +55,28 @@ var VarData = [
 {id:16,color:"zold",value:4},
 ]
 
+//Globál változók
+
 var cellak = [];
 
+var kivalaszt = false;
+var kivalasztMast = true;
+var kivKartyaId = null;
+var kivVarId = null;
+var huzottkartya = false;
+var ertekek = [];
+var kezdoKartyaId = null;
+
+var kartyalista = [];
+
+//Nem resetelendő globál változók
+var kezdoKor = true; 
+var pontSzam = 50;
+var round = 1;
+
+
+
+//Divek játékhozfűzése
 function JatekterBetoltes()
 {
     balPanel.appendChild(kartyaBox);
@@ -64,7 +84,12 @@ function JatekterBetoltes()
     jatekTer.appendChild(balPanel);
     jatekTer.appendChild(tabla);
     jatekTer.appendChild(korokBox);
+
+    document.body.appendChild(playerdiv);
+    playerdiv.appendChild(bottomdiv);
+    playerdiv.appendChild(felhuzodiv);
 }
+//Id adás
 function JatekterElrendezes()
 {
     balPanel.id = "balpanel";
@@ -72,7 +97,12 @@ function JatekterElrendezes()
     pontokBox.id = "pontokbox";
     tabla.id = "tabla";
     korokBox.id = "korokbox";
+
+    playerdiv.id = "Playerdiv";
+    bottomdiv.id = "Bottomdiv";
+    felhuzodiv.id = "Felhuzodiv";
 }
+//Tábla feltöltése divekkel
 function TablaGeneralas()
 {
     var k = 1;
@@ -90,14 +120,27 @@ function TablaGeneralas()
         }
         tabla.appendChild(sorDiv);
     }
-    playerdiv.id = "Playerdiv";
-    bottomdiv.id = "Bottomdiv";
-    felhuzodiv.id = "Felhuzodiv";
-    document.body.appendChild(playerdiv);
-    playerdiv.appendChild(bottomdiv);
-    playerdiv.appendChild(felhuzodiv);
 }
-function CellakRandomizalasa(){
+
+//Jelenlegi kör megjelenítése
+function KorokHelyzete(){ 
+    for (let i = 1; i < 4; i++) {
+        
+        var divek=document.createElement("div");
+        divek.id="div"+i+"kor"
+        divek.innerText=i+".Kör!"
+        if (i==round) {
+            divek.style.fontWeight="bold";
+            divek.style.border= "3px solid #333333";
+            divek.style.backgroundColor="#D3D3D3"
+        }
+        korokBox.appendChild(divek);
+        
+    }
+}
+
+//Cellak tömb feltöltése
+function CellakFeltoltes(){
 
     for(let i = 0; i< 23;i++)
     {
@@ -107,20 +150,8 @@ function CellakRandomizalasa(){
         cellak.push(cella);
     }
 }
-//Globál változók
 
-var kivalaszt = false;
-var kivalasztMast = true;
-var kivKartyaId = null;
-var kivVarId = null;
-var huzottkartya = false;
-var Ertekek = [];
-var kezdoKartyaId;
-var Ertekek = [];
-var  ptszam= 50;
-var ermek =[];
-var hanyadikkor = 1;
-
+//tábla divek onlcickje
 function KepAtteves(div){
     if(kivalasztMast == false){
         if(kivKartyaId != null){
@@ -131,7 +162,7 @@ function KepAtteves(div){
             cella.id = index;
             cella.type = "kártya";
             cella.kartya = cellak[kivKartyaId].kartya;
-            Ertekek[index] = cella;
+            ertekek[index] = cella;
             var hely = document.getElementById(index);
             kep.src = "img/Lapok/"+cellak[kivKartyaId].kartya.id+".jpg";
             hely.appendChild(kep);
@@ -142,6 +173,11 @@ function KepAtteves(div){
                 huzottkartya = false;
             }
             kivKartyaId = null;
+            if(!Nincstele()){
+                round++;
+                kezdoKor = false;
+                UjKor();
+            }
             console.clear();
             Kiszamolas();
         }
@@ -154,12 +190,17 @@ function KepAtteves(div){
             cella.id = index;
             cella.type = "vár";
             cella.kartya = VarData[kivVarId-1];
-            Ertekek[index] = cella;
+            ertekek[index] = cella;
             kep.src = "img/tornyok/kek/"+kivVarId+".png";
             hely.appendChild(kep);
             kivalaszt = false;
             kivalasztMast = true;
             kivVarId = null;
+            if(!Nincstele()){
+                round++;
+                kezdoKor = false;
+                UjKor();
+            }
             console.clear();
             Kiszamolas();
         }
@@ -171,10 +212,10 @@ function Kiszamolas(){
     for(var i = 0; i < 30;i+=6){
         var db = 0;
         for(var j = 1; j < 7;j++){
-            for(var k = 0; k < Ertekek.length;k++){
-                if(Ertekek[k]!=undefined){
-                    if(Ertekek[k].id == (i+j) && Ertekek[k].type == "kártya"){
-                        db += Ertekek[k].kartya.value;
+            for(var k = 0; k < ertekek.length;k++){
+                if(ertekek[k]!=undefined){
+                    if(ertekek[k].id == (i+j) && ertekek[k].type == "kártya"){
+                        db += ertekek[k].kartya.value;
                     }
                 }
             }
@@ -185,10 +226,10 @@ function Kiszamolas(){
     for(var i = 1; i < 7;i++){
         var db = 0;
         for(var j = 0; j < 30;j+=6){
-            for(var k = 0; k < Ertekek.length;k++){
-                if(Ertekek[k]!=undefined){
-                    if(Ertekek[k].id == (i+j) && Ertekek[k].type == "kártya"){
-                        db += Ertekek[k].kartya.value;
+            for(var k = 0; k < ertekek.length;k++){
+                if(ertekek[k]!=undefined){
+                    if(ertekek[k].id == (i+j) && ertekek[k].type == "kártya"){
+                        db += ertekek[k].kartya.value;
                     }
                 }
             }
@@ -198,17 +239,17 @@ function Kiszamolas(){
 }
 function Nincstele(){
     var db = 0;
-    if(Ertekek.length == 0){
+    if(ertekek.length == 0){
         return true;
     }
     else{
-        for(let i = 1;i<Ertekek.length;i++){
+        for(let i = 1;i<ertekek.length;i++){
             db++;
-            if(Ertekek[i] == undefined){
+            if(ertekek[i] == undefined){
                 return true;
             }
         }
-        if(db==Ertekek.length-1 && Ertekek.length != 31){
+        if(db==ertekek.length-1 && ertekek.length != 31){
             return true;
         }
         else{
@@ -224,29 +265,30 @@ function RandomPakli()
     cardbackimg.src = "img/cardback.png";
     cardbackimg.id = "Kartyaback";
     Paklidiv.appendChild(cardbackimg);
-    for(var i = 0; i<22;i++){
-        cardbackimg.setAttribute("onclick","randomKartya()");
-    }
+    cardbackimg.setAttribute("onclick","randomKartya(this)");
     kartyaBox.appendChild(Paklidiv);
-    hanyadikkor++;
 }
-var kartyalista = [];
-function randomKartya(){
-        if(kivalaszt == false && Nincstele()){
-            kivalaszt = true;
-            kivalasztMast = false;
-            var kartyakep = document.createElement("img");
-            var random = Math.floor(Math.random()*23);
-            while(kartyalista.includes(random)){
-                random = Math.floor(Math.random()*23);
-            }
-            kartyalista.push(random);
-            kartyakep.src = "img/Lapok/"+cellak[random].kartya.id+".jpg";
-            kartyakep.id = -1;
-            kivKartyaId = random;
-            huzottkartya = true;
-            felhuzodiv.appendChild(kartyakep);
+
+function randomKartya(img){
+    if(kivalaszt == false && Nincstele()){
+        kivalaszt = true;
+        kivalasztMast = false;
+        var kartyakep = document.createElement("img");
+        var random = Math.floor(Math.random()*23);
+        while(kartyalista.includes(random)){
+            random = Math.floor(Math.random()*23);
         }
+        kartyalista.push(random);
+        kartyakep.src = "img/Lapok/"+cellak[random].kartya.id+".jpg";
+        kartyakep.id = -1;
+        kivKartyaId = random;
+        huzottkartya = true;
+        if(kartyalista.length==23){
+            img.removeAttribute("onclick");
+            img.src = "img/kifogyottCardback.png";
+        }
+        felhuzodiv.appendChild(kartyakep);
+    }
 }
 function KezdoKezGen(){
     VarGeneralas();
@@ -317,7 +359,7 @@ function kezdKartyaAttaves(div){
 
 function Ermekfunct() {
     //az érme játék elején 50, és a kör végi pontok alapján nő vagy csökken, még az nincs meg mikor van kör vége ezé csak berakom az érméket.
-    var ermejelen= 69;
+    var ermejelen = pontSzam;
     var divkepeknek = document.createElement("div");
     divkepeknek.id="ermekdiv";
     pontokBox.appendChild(divkepeknek);
@@ -327,12 +369,6 @@ function Ermekfunct() {
     var erme10 = document.createElement("img");erme10.src = "img/Érmék/10tr.png";var darab10=0;
     var erme50 = document.createElement("img");erme50.src = "img/Érmék/50tr.png";var darab50=0;
     var erme100 = document.createElement("img");erme100.src = "img/Érmék/100tr.png";var darab100=0;
-    /*
-    divkepeknek.appendChild(erme1);
-    divkepeknek.appendChild(erme5);
-    divkepeknek.appendChild(erme10);
-    divkepeknek.appendChild(erme50);
-    */
     while (ermejelen>0) {
         while(ermejelen>=100)
         {
@@ -340,7 +376,7 @@ function Ermekfunct() {
             ermejelen-=100;
         }
         document.getElementById("ermekdiv").innerHTML+=darab100;
-            divkepeknek.appendChild(erme100);
+        divkepeknek.appendChild(erme100);
 
         while(ermejelen>=50){
             darab50++;
@@ -374,26 +410,46 @@ function Ermekfunct() {
     
 }
 
-function Korok()
-{
-    for (let i = 1; i < 4; i++) {
-        var divek=document.createElement("div");
-        divek.id="div"+i+"kor"
-        divek.innerText=i+".Kör!"
-        korokBox.appendChild(divek);
-        
+function UjKor(){
+    if(round==4){
+        //tabla.innerText += "VÉGEVAAN";
     }
+    else{
+        GlobalValtozoVisszaAllitas();
+        tabla.innerHTML = "";
+        kartyaBox.innerHTML = "";
+        bottomdiv.innerHTML = "";
+        felhuzodiv.innerHTML = "";
+        pontokBox.innerHTML = "";
+        korokBox.innerHTML = "";
+        Main();
+    }
+}
+
+function GlobalValtozoVisszaAllitas(){
+    kivalaszt = false;
+    kivalasztMast = true;
+    kivKartyaId = null;
+    kivVarId = null;
+    huzottkartya = false;
+    ertekek = [];
+    kezdoKartyaId = null;
+    kartyalista = [];
+    cellak = [];
 }
 
 function Main()
 {
-    JatekterBetoltes();
-    JatekterElrendezes();
+    if(kezdoKor){
+        JatekterBetoltes();
+        JatekterElrendezes();
+    }
     TablaGeneralas();
-    CellakRandomizalasa();
+    KorokHelyzete();
+    CellakFeltoltes();
     RandomPakli();
     KezdoKezGen();
     Ermekfunct();
-    Korok();
 }
 Main();
+

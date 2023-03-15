@@ -1,40 +1,52 @@
 body{
-    background-color: burlywood;
+    background-image: url(img/hatter.jpg);
+    background-repeat: repeat;
+    background-size: cover;
 }
 #jatekter{
     width: 100%;
-    border: 3px solid darkgoldenrod;
+    border: 3px solid black;
     display: flex;
     flex-direction: row;
     height: 40vw;
-    background-image: url(img/rpgforest.png);
+    
 }
 #balpanel{
     width: 30%;
-    border: 1px solid darkgoldenrod;
+    border: 1px solid black;
     height: 40vw;
     background-color: darkslategrey;
+    
 }
 #kartyabox{
-    border: 1px solid darkgoldenrod;
+    border: 1px solid black;
     height: 20vw;
+    background-image: url(img/asztal.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #pontokbox{
-
+    background-image: url(img/goldcoins.jpg);
     height: 20vw;
 }
 #tabla{
     width: 50%;
-    border: 1px solid darkgoldenrod;
+    border: 1px solid black;
     height: 40vw;
     display: flex;
     flex-direction: column;
+    background-image: url(img/rpgforest.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #korokbox{
     width: 20%;
-    border: 1px solid darkgoldenrod;
+    border: 1px solid black;
     height: 40vw;
-    background-color:darkslategrey;
+    /*background-color:darkslategrey;*/
+    background-image: url(img/mountain.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .sordiv{
     /*border: 1px solid black;*/
@@ -96,6 +108,7 @@ body{
     width: 25%;
     
     
+    
 }
 #Bottomdiv{
     width: 80%;
@@ -107,6 +120,7 @@ body{
     float: left;
     display: flex;
     flex-direction: row;
+    background-image: url(img/lava.png)
 }
 #Bottomdiv div{
     display: flex;
@@ -126,14 +140,17 @@ body{
     height: 7vw;
     margin: 1%;
     border: 2px solid black;
-    background-color: white;
+    background-color: #d3d3d3;
     border-radius: 5px;
     float: right;
     display: flex;
     flex-direction: row;
+    
 }
+
 #Felhuzodiv img{
     width: 100%;
+    
 }
 
 #korokbox img{
@@ -143,25 +160,22 @@ body{
 }
 
 #ermekdiv img{
-    width: 10%;
-    height: 10%;
+    width: 16%;
+    height: 16%;
+    margin-top: 25%;
 }
-
-#div1kor{
+#ermekdiv {
+    
+    font-size: 200%;
+    color: white;
+}
+#div1kor ,#div2kor,#div3kor{
+    border-radius: 20%;
+    text-align: center;
+    padding: 20%;
     border: solid black 3px;
     background-color: grey;
-    margin: 40%;
+    margin: 10%;
     position: relative;
-}
-#div2kor{
-    border: solid black 3px;
-    background-color: grey;
-    position: relative;
-    margin: 40%;
-}
-#div3kor{
-    border: solid black 3px;
-    background-color: grey;
-    position: relative;
-    margin: 40%;
+    font-size:200%;
 }
