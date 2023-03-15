@@ -7,6 +7,7 @@ body{
     display: flex;
     flex-direction: row;
     height: 40vw;
+    background-image: url(img/rpgforest.png);
 }
 #balpanel{
     width: 30%;
@@ -28,9 +29,6 @@ body{
     height: 40vw;
     display: flex;
     flex-direction: column;
-    background-image: url(img/rpgforest.png);
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 #korokbox{
     width: 20%;
@@ -149,8 +147,21 @@ body{
     height: 10%;
 }
 
-#divkor{
-    size: 100%;
+#div1kor{
+    border: solid black 3px;
+    background-color: grey;
+    margin: 40%;
     position: relative;
 }
-
+#div2kor{
+    border: solid black 3px;
+    background-color: grey;
+    position: relative;
+    margin: 40%;
+}
+#div3kor{
+    border: solid black 3px;
+    background-color: grey;
+    position: relative;
+    margin: 40%;
+}

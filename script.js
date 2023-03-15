@@ -379,6 +379,7 @@ function Korok()
     for (let i = 1; i < 4; i++) {
         var divek=document.createElement("div");
         divek.id="div"+i+"kor"
+        divek.innerText=i+".Kör!"
         korokBox.appendChild(divek);
         
     }
