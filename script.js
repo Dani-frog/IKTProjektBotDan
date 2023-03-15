@@ -297,7 +297,7 @@ function Osszegzes(){
     }
     console.log(Oszlopok);
 
-    pontSzam = Sum(Sorok)+Sum(Oszlopok);
+    pontSzam += Sum(Sorok)+Sum(Oszlopok);
 }
 
 function Sum(t){
@@ -608,9 +608,23 @@ function Ermekfunct() {
     
 }
 
+function Ujratolt()
+{
+    location.reload()
+}
+
 function UjKor(){
     if(round==4){
-        //tabla.innerText += "VÉGEVAAN";
+        var divujkor = document.createElement("div");
+        var gomb = document.createElement('button');
+        gomb.id="gomb";
+        gomb.innerText="Új Játék!";
+        divujkor.id="jatekvege"
+        divujkor.innerHTML+="Vége Van A Játéknak!<br>"
+        divujkor.innerHTML+="A Pontszámod: " + pontSzam;
+        gomb.setAttribute("onclick","Ujratolt()");
+        divujkor.appendChild(gomb);
+        document.getElementById("jatekter").appendChild(divujkor);
     }
     else{
         GlobalValtozoVisszaAllitas();

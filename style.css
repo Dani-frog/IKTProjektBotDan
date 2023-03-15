@@ -28,6 +28,9 @@ body{
 #pontokbox{
     background-image: url(img/goldcoins.jpg);
     height: 20vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow:auto
 }
 #tabla{
     width: 50%;
@@ -48,6 +51,7 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     background-size:cover;
+    overflow:auto
 }
 .sordiv{
     /*border: 1px solid black;*/
@@ -154,19 +158,13 @@ body{
     
 }
 
-#korokbox img{
-    width: 10vw;
-    height: 10vw;
-    margin: 7%
-}
-
 #ermekdiv img{
     width: 16%;
     height: 16%;
     margin-top: 25%;
 }
 #ermekdiv {
-    
+    position:inherit;
     font-size: 200%;
     color: white;
 }
@@ -179,4 +177,17 @@ body{
     margin: 10%;
     position: relative;
     font-size:200%;
+    overflow:auto
+}
+#jatekvege
+{
+    border: solid black 3px;
+    background-color: white;
+    position: absolute;
+    align-self:center;
+    margin-left: 45%;
+    margin-right: 45%;
+    text-align: center;
+    border-radius: 10%;
+    padding: 10%;
 }
