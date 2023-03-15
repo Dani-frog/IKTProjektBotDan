@@ -176,10 +176,9 @@ function KepAtteves(div){
             if(!Nincstele()){
                 round++;
                 kezdoKor = false;
+                Osszegzes();
                 UjKor();
             }
-            console.clear();
-            Kiszamolas();
         }
         else if(kivVarId != null){
             var index = div.id;
@@ -199,16 +198,15 @@ function KepAtteves(div){
             if(!Nincstele()){
                 round++;
                 kezdoKor = false;
+                Osszegzes();
                 UjKor();
             }
-            console.clear();
-            Kiszamolas();
         }
     }
 }
 //Sor Oszlop kiszámoló
-function Kiszamolas(){
-    console.log("---------Sor összegek---------");
+function Osszegzes(){
+    /*console.log("---------Sor összegek---------");
     for(var i = 0; i < 30;i+=6){
         var db = 0;
         for(var j = 1; j < 7;j++){
@@ -235,8 +233,200 @@ function Kiszamolas(){
             }
         }
         console.log((i)+". oszlop: "+db); 
+    }*/
+    for(var i = 0; i < ertekek.length;i++){
+        if(ertekek[i]!=undefined){
+            if(ertekek[i].kartya.sign="pap"){
+                console.log(i);
+                VarazsloHely(i);
+                break;
+            }
+        }
+    }
+
+    var Sorok = [];
+    //sorok
+    for(var i = 0; i < 30;i+=6){
+        var sorOsszegek = [];
+        var sorVarOsszegek = [];
+        var jelzes = "";
+        for(var j = 1; j < 7;j++){
+            if(ertekek[(i+j)].type=="kártya"){
+                sorOsszegek.push(ertekek[(i+j)].kartya.value);
+                if(ertekek[(i+j)].kartya.sign==""){
+                    jelzes = ertekek[(i+j)].kartya.sign;
+                }
+            }
+            else{
+                if(ertekek[(i+j)].megnovelt != undefined){
+                    sorVarOsszegek.push(ertekek[(i+j)].kartya.value+1);
+                }
+                else{
+                    sorVarOsszegek.push(ertekek[(i+j)].kartya.value);
+                }
+            }
+        }
+        if(jelzes!="" || jelzes!="hegy"){
+            if(jelzes=="sarkany"){
+                for(var k = 0;k<sorOsszegek.length;k++){
+                    if(sorOsszegek[k]>0){
+                        sorOsszegek[k]=0;
+                    }
+                }
+            }
+            else if(jelzes=="taliga"){
+                for(var k = 0;k<sorOsszegek.length;k++){
+                    sorOsszegek[k] *= 2;
+                }
+            }
+        }
+        Sorok.push(Sum(sorOsszegek)*Sum(sorVarOsszegek));
+    }
+
+    var Oszlopok = [];
+    //Oszlopok
+
+    var oszlopOsszegek = [];
+    var oszlopVarOsszegek = [];
+}
+
+function Sum(t){
+    let ans = 0; 
+    for(var i = 0;i<t.length;i++){
+        ans+=t[i];
+    }
+    return ans;
+}
+
+function VarazsloHely(x){
+    //tetején
+    if((x-6)<=0 && x%6!=1 && x%6!=0){
+        //balra check
+        console.log(x-1+"bal")
+        if(ertekek[x-1].type == "vár" && ertekek[x-1].kartya.value != 4){
+            ertekek[x-1].megnovelt = true;
+        }
+        //jobbra check
+        console.log(x+1+"jobb")
+        if(ertekek[x+1].type == "vár" && ertekek[x+1].kartya.value != 4){
+            ertekek[x+1].megnovelt = true;
+        }
+        //le check
+        console.log(x+6+"le")
+        if(ertekek[x+6].type == "vár" && ertekek[x+6].kartya.value != 4){
+            ertekek[x+6].megnovelt = true;
+        }
+    }
+    //alján
+    else if((x+6)>=31 && x%6!=1 && x%6!=0){
+        //balra check
+        if(ertekek[x-1].type == "vár" && ertekek[x-1].kartya.value != 4){
+            ertekek[x-1].megnovelt = true;
+        }
+        //jobbra check
+        if(ertekek[x+1].type == "vár" && ertekek[x+1].kartya.value != 4){
+            ertekek[x+1].megnovelt = true;
+        }
+        //fel check
+        if(ertekek[x-6].type == "vár" && ertekek[x-6].kartya.value != 4){
+            ertekek[x-6].megnovelt = true;
+        }
+    }
+    //bal szélén
+    else if(x%6==1 && (x-6)>0 && (x+6)<31){
+        //jobbra check
+        if(ertekek[x+1].type == "vár" && ertekek[x+1].kartya.value != 4){
+            ertekek[x+1].megnovelt = true;
+        }
+        //le check
+        if(ertekek[x+6].type == "vár" && ertekek[x+6].kartya.value != 4){
+            ertekek[x+6].megnovelt = true;
+        }
+        //fel check
+        if(ertekek[x-6].type == "vár" && ertekek[x-6].kartya.value != 4){
+            ertekek[x-6].megnovelt = true;
+        }
+    }
+    //jobb szélén
+    else if(x%6==0 && (x-6)>0 && (x+6)<31){
+        //balra check
+        if(ertekek[x-1].type == "vár" && ertekek[x-1].kartya.value != 4){
+            ertekek[x-1].megnovelt = true;
+        }
+        //le check
+        if(ertekek[x+6].type == "vár" && ertekek[x+6].kartya.value != 4){
+            ertekek[x+6].megnovelt = true;
+        }
+        //fel check
+        if(ertekek[x-6].type == "vár" && ertekek[x-6].kartya.value != 4){
+            ertekek[x-6].megnovelt = true;
+        }
+    }
+    //tetején bal sarok
+    else if((x-6)<=0 && x%6==1){
+        //jobbra check
+        if(ertekek[x+1].type == "vár" && ertekek[x+1].kartya.value != 4){
+            ertekek[x+1].megnovelt = true;
+        }
+        //le check
+        if(ertekek[x+6].type == "vár" && ertekek[x+6].kartya.value != 4){
+            ertekek[x+6].megnovelt = true;
+        }
+    }
+    //tetején jobb sarok
+    else if((x-6)<=0 && x%6==0){
+        //balra check
+        if(ertekek[x-1].type == "vár" && ertekek[x-1].kartya.value != 4){
+            ertekek[x-1].megnovelt = true;
+        }
+        //le check
+        if(ertekek[x+6].type == "vár" && ertekek[x+6].kartya.value != 4){
+            ertekek[x+6].megnovelt = true;
+        }
+    }
+    //alján bal sarok
+    else if((x+6)>=31 && x%6==1){
+        //jobbra check
+        if(ertekek[x+1].type == "vár" && ertekek[x+1].kartya.value != 4){
+            ertekek[x+1].megnovelt = true;
+        }
+        //fel check
+        if(ertekek[x-6].type == "vár" && ertekek[x-6].kartya.value != 4){
+            ertekek[x-6].megnovelt = true;
+        }
+    }
+    //alján jobb sarok
+    else if((x+6)>=31 && x%6==0){
+        //balra check
+        if(ertekek[x-1].type == "vár" && ertekek[x-1].kartya.value != 4){
+            ertekek[x-1].megnovelt = true;
+        }
+        //fel check
+        if(ertekek[x-6].type == "vár" && ertekek[x-6].kartya.value != 4){
+            ertekek[x-6].megnovelt = true;
+        }
+    }
+    //nincs szélen
+    else{
+        //balra check
+        if(ertekek[x-1].type == "vár" && ertekek[x-1].kartya.value != 4){
+            ertekek[x-1].megnovelt = true;
+        }
+        //jobbra check
+        if(ertekek[x+1].type == "vár" && ertekek[x+1].kartya.value != 4){
+            ertekek[x+1].megnovelt = true;
+        }
+        //le check
+        if(ertekek[x+6].type == "vár" && ertekek[x+6].kartya.value != 4){
+            ertekek[x+6].megnovelt = true;
+        }
+        //fel check
+        if(ertekek[x-6].type == "vár" && ertekek[x-6].kartya.value != 4){
+            ertekek[x-6].megnovelt = true;
+        }
     }
 }
+
 function Nincstele(){
     var db = 0;
     if(ertekek.length == 0){
