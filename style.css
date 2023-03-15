@@ -44,9 +44,10 @@ body{
     border: 1px solid black;
     height: 40vw;
     /*background-color:darkslategrey;*/
-    background-image: url(img/mountain.jpg);
+    background-image: url(img/Giant_Tree.png);
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
 }
 .sordiv{
     /*border: 1px solid black;*/
