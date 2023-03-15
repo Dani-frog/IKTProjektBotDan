@@ -30,9 +30,9 @@ var KartyaData = [
 {id:18,value:1,sign:''},
 {id:19,value:-1,sign:''},
 {id:20,value:-2,sign:''},
-{id:21,value:1,sign:''},
+{id:21,value:0,sign:'hegy'},
 {id:22,value:3,sign:''},
-{id:23,value:0,sign:'hegy'},
+{id:23,value:1,sign:''},
 ]
 
 
@@ -72,7 +72,7 @@ var kartyalista = [];
 //Nem resetelendő globál változók
 var kezdoKor = true; 
 var pontSzam = 50;
-var round = 1;
+var round = 3;
 
 
 
@@ -204,37 +204,6 @@ function KepAtteves(div){
             console.clear();
             Kiszamolas();
         }
-    }
-}
-//Sor Oszlop kiszámoló
-function Kiszamolas(){
-    console.log("---------Sor összegek---------");
-    for(var i = 0; i < 30;i+=6){
-        var db = 0;
-        for(var j = 1; j < 7;j++){
-            for(var k = 0; k < ertekek.length;k++){
-                if(ertekek[k]!=undefined){
-                    if(ertekek[k].id == (i+j) && ertekek[k].type == "kártya"){
-                        db += ertekek[k].kartya.value;
-                    }
-                }
-            }
-        }
-        console.log((Math.floor((i/6))+1)+". sor: "+db);
-    }
-    console.log("---------Oszlop összegek---------");
-    for(var i = 1; i < 7;i++){
-        var db = 0;
-        for(var j = 0; j < 30;j+=6){
-            for(var k = 0; k < ertekek.length;k++){
-                if(ertekek[k]!=undefined){
-                    if(ertekek[k].id == (i+j) && ertekek[k].type == "kártya"){
-                        db += ertekek[k].kartya.value;
-                    }
-                }
-            }
-        }
-        console.log((i)+". oszlop: "+db); 
     }
 }
 function Nincstele(){
@@ -410,9 +379,23 @@ function Ermekfunct() {
     
 }
 
+function Ujratolt()
+{
+    location.reload()
+}
+
 function UjKor(){
     if(round==4){
-        //tabla.innerText += "VÉGEVAAN";
+        var divujkor = document.createElement("div");
+        var gomb = document.createElement('button');
+        gomb.id="gomb";
+        gomb.innerText="Új Játék!";
+        divujkor.id="jatekvege"
+        divujkor.innerHTML+="Vége Van A Játéknak!<br>"
+        divujkor.innerHTML+="A Pontszámod: " + pontSzam;
+        gomb.setAttribute("onclick","Ujratolt()");
+        divujkor.appendChild(gomb);
+        document.getElementById("jatekter").appendChild(divujkor);
     }
     else{
         GlobalValtozoVisszaAllitas();

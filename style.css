@@ -28,6 +28,8 @@ body{
 #pontokbox{
     background-image: url(img/goldcoins.jpg);
     height: 20vw;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #tabla{
     width: 50%;
@@ -161,12 +163,13 @@ body{
 }
 
 #ermekdiv img{
+    
     width: 16%;
     height: 16%;
     margin-top: 25%;
 }
 #ermekdiv {
-    
+    position:inherit;
     font-size: 200%;
     color: white;
 }
@@ -179,4 +182,16 @@ body{
     margin: 10%;
     position: relative;
     font-size:200%;
+}
+#jatekvege
+{
+    border: solid black 3px;
+    background-color: white;
+    position: absolute;
+    align-self:center;
+    margin-left: 45%;
+    margin-right: 45%;
+    text-align: center;
+    border-radius: 10%;
+    padding: 10%;
 }
