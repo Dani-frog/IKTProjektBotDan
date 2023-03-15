@@ -235,7 +235,6 @@ function Osszegzes(){
             else{
                 if(ertekek[(i+j)].megnovelt != undefined && ertekek[(i+j)].megnovelt == true){
                     sorVarOsszegek.push(ertekek[(i+j)].kartya.value+1);
-                    ertekek[(i+j)].megnovelt = false;
                 }
                 else{
                     sorVarOsszegek.push(ertekek[(i+j)].kartya.value);
@@ -280,7 +279,6 @@ function Osszegzes(){
             else{
                 if(ertekek[(i+j)].megnovelt != undefined && ertekek[(i+j)].megnovelt == true){
                     oszlopVarOsszegek.push(ertekek[(i+j)].kartya.value+1);
-                    ertekek[(i+j)].megnovelt = false;
                 }
                 else{
                     oszlopVarOsszegek.push(ertekek[(i+j)].kartya.value);
@@ -563,7 +561,6 @@ function kezdKartyaAttaves(div){
 }
 
 function Ermekfunct() {
-    //az érme játék elején 50, és a kör végi pontok alapján nő vagy csökken, még az nincs meg mikor van kör vége ezé csak berakom az érméket.
     var ermejelen = pontSzam;
     var divkepeknek = document.createElement("div");
     divkepeknek.id="ermekdiv";
@@ -620,6 +617,16 @@ function Ujratolt()
     location.reload()
 }
 
+function VarazsloVarVisszaAllitas(){
+    for(var i = 0;i<ertekek.length;i++){
+        if(ertekek[i].type=="vár"){
+            if(ertekek[i].kartya.megnovelt != undefined){
+                ertekek[i].kartya.megnovelt = false;
+            }
+        }
+    }
+}
+
 function UjKor(){
     if(round==4){
         var divujkor = document.createElement("div");
@@ -634,6 +641,7 @@ function UjKor(){
         document.getElementById("jatekter").appendChild(divujkor);
     }
     else{
+        VarazsloVarVisszaAllitas();
         GlobalValtozoVisszaAllitas();
         tabla.innerHTML = "";
         kartyaBox.innerHTML = "";
