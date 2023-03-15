@@ -206,34 +206,6 @@ function KepAtteves(div){
 }
 //Sor Oszlop kiszámoló
 function Osszegzes(){
-    /*console.log("---------Sor összegek---------");
-    for(var i = 0; i < 30;i+=6){
-        var db = 0;
-        for(var j = 1; j < 7;j++){
-            for(var k = 0; k < ertekek.length;k++){
-                if(ertekek[k]!=undefined){
-                    if(ertekek[k].id == (i+j) && ertekek[k].type == "kártya"){
-                        db += ertekek[k].kartya.value;
-                    }
-                }
-            }
-        }
-        console.log((Math.floor((i/6))+1)+". sor: "+db);
-    }
-    console.log("---------Oszlop összegek---------");
-    for(var i = 1; i < 7;i++){
-        var db = 0;
-        for(var j = 0; j < 30;j+=6){
-            for(var k = 0; k < ertekek.length;k++){
-                if(ertekek[k]!=undefined){
-                    if(ertekek[k].id == (i+j) && ertekek[k].type == "kártya"){
-                        db += ertekek[k].kartya.value;
-                    }
-                }
-            }
-        }
-        console.log((i)+". oszlop: "+db); 
-    }*/
     for(var i = 0; i < ertekek.length;i++){
         if(ertekek[i]!=undefined){
             if(ertekek[i].kartya.sign=="pap"){
