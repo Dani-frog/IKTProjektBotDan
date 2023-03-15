@@ -233,8 +233,9 @@ function Osszegzes(){
                 }
             }
             else{
-                if(ertekek[(i+j)].megnovelt != undefined){
+                if(ertekek[(i+j)].megnovelt != undefined && ertekek[(i+j)].megnovelt == true){
                     sorVarOsszegek.push(ertekek[(i+j)].kartya.value+1);
+                    ertekek[(i+j)].megnovelt = false;
                 }
                 else{
                     sorVarOsszegek.push(ertekek[(i+j)].kartya.value);
@@ -277,8 +278,9 @@ function Osszegzes(){
                 }
             }
             else{
-                if(ertekek[(i+j)].megnovelt != undefined){
+                if(ertekek[(i+j)].megnovelt != undefined && ertekek[(i+j)].megnovelt == true){
                     oszlopVarOsszegek.push(ertekek[(i+j)].kartya.value+1);
+                    ertekek[(i+j)].megnovelt = false;
                 }
                 else{
                     oszlopVarOsszegek.push(ertekek[(i+j)].kartya.value);
