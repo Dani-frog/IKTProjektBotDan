@@ -253,13 +253,11 @@ function RandomPakli()
     cardbackimg.src = "img/cardback.png";
     cardbackimg.id = "Kartyaback";
     Paklidiv.appendChild(cardbackimg);
-    for(var i = 0; i<22;i++){
-        cardbackimg.setAttribute("onclick","randomKartya()");
-    }
+    cardbackimg.setAttribute("onclick","randomKartya(this)");
     kartyaBox.appendChild(Paklidiv);
 }
 
-function randomKartya(){
+function randomKartya(img){
         if(kivalaszt == false && Nincstele()){
             kivalaszt = true;
             kivalasztMast = false;
@@ -273,9 +271,14 @@ function randomKartya(){
             kartyakep.id = -1;
             kivKartyaId = random;
             huzottkartya = true;
+            if(kartyalista.length==23){
+                img.removeAttribute("onclick");
+                img.src = "img/kifogyottCardback.png";
+            }
             felhuzodiv.appendChild(kartyakep);
         }
 }
+
 function KezdoKezGen(){
     VarGeneralas();
     var random = Math.floor(Math.random()*23);
