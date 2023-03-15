@@ -55,7 +55,26 @@ var VarData = [
 {id:16,color:"zold",value:4},
 ]
 
+//Globál változók
+
 var cellak = [];
+
+var kivalaszt = false;
+var kivalasztMast = true;
+var kivKartyaId = null;
+var kivVarId = null;
+var huzottkartya = false;
+var ertekek = [];
+var kezdoKartyaId = null;
+
+var kartyalista = [];
+
+//Nem resetelendő globál változók
+var kezdoKor = true; 
+var pontSzam = 50;
+var round = 1;
+
+
 
 //Divek játékhozfűzése
 function JatekterBetoltes()
@@ -119,19 +138,6 @@ function CellakFeltoltes(){
         cellak.push(cella);
     }
 }
-//Globál változók
-
-var kivalaszt = false;
-var kivalasztMast = true;
-var kivKartyaId = null;
-var kivVarId = null;
-var huzottkartya = false;
-var ertekek = [];
-var kezdoKartyaId = null;
-
-var kezdoKor = true; 
-var pontSzam = 50;
-var round = 1;
 
 //tábla divek onlcickje
 function KepAtteves(div){
@@ -252,7 +258,7 @@ function RandomPakli()
     }
     kartyaBox.appendChild(Paklidiv);
 }
-var kartyalista = [];
+
 function randomKartya(){
         if(kivalaszt == false && Nincstele()){
             kivalaszt = true;
