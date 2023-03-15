@@ -374,6 +374,16 @@ function Ermekfunct() {
     
 }
 
+function Korok()
+{
+    for (let i = 1; i < 4; i++) {
+        var divek=document.createElement("div");
+        divek.id="divkor"
+        korokBox.appendChild(divek);
+        
+    }
+}
+
 function Main()
 {
     JatekterBetoltes();
@@ -383,5 +393,6 @@ function Main()
     RandomPakli();
     KezdoKezGen();
     Ermekfunct();
+    Korok();
 }
 Main();
