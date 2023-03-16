@@ -618,7 +618,7 @@ function Ujratolt()
 }
 
 function VarazsloVarVisszaAllitas(){
-    for(var i = 0;i<ertekek.length;i++){
+    for(var i = 1;i<ertekek.length;i++){
         if(ertekek[i].type=="vár"){
             if(ertekek[i].kartya.megnovelt != undefined){
                 ertekek[i].kartya.megnovelt = false;
